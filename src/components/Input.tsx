@@ -1,21 +1,16 @@
-import { HTMLInputTypeAttribute } from "@/types/componentTypes";
 import { useState } from "react";
 
-interface IProp {
+interface IProp extends React.InputHTMLAttributes<HTMLInputElement> {
   onChange: (arg: any) => void;
-  placeholder?: string;
-  type?: HTMLInputTypeAttribute;
 }
 
-export default function Input({ onChange, placeholder, type }: IProp) {
+export default function Input({ onChange, ...rest }: IProp) {
   const [val, setVal] = useState<null | any>(null);
 
   return (
     <input
-      className=" bg-bgSecondary rounded-md"
-      placeholder={placeholder}
+      className=" bg-bgSecondary rounded-md p-2 w-full"
       value={val || ""}
-      type={type}
       onChange={(e) => {
         setVal(e.target.value);
         onChange(val);
@@ -27,6 +22,7 @@ export default function Input({ onChange, placeholder, type }: IProp) {
           e.target.valueAsNumber
         );
       }}
+      {...rest}
     />
   );
 }
