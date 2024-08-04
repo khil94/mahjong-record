@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-interface IProp extends React.InputHTMLAttributes<HTMLInputElement> {
+interface IProp
+  extends React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
   onChange: (arg: any) => void;
 }
 
@@ -13,14 +17,7 @@ export default function Input({ onChange, ...rest }: IProp) {
       value={val || ""}
       onChange={(e) => {
         setVal(e.target.value);
-        onChange(val);
-        console.log(
-          "current val",
-          val,
-          typeof e.target.value,
-          e.target.value,
-          e.target.valueAsNumber
-        );
+        onChange(e.target.value);
       }}
       {...rest}
     />
