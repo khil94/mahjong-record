@@ -21,8 +21,19 @@ export interface IGameDetail {
   userName: string;
 }
 
+export interface IGameRough {
+  score: number;
+  uma: number;
+  userName: string;
+}
+
 export interface IGameData {
   date: Date;
   detail: IGameDetail[];
   id: string;
+}
+
+export interface IPostGameData {
+  date: Date;
+  detail: IGameDetail[];
 }
