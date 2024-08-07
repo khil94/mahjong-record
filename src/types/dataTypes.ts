@@ -5,7 +5,7 @@ export interface IUser {
   name: string;
 }
 
-type IRank = 1 | 2 | 3 | 4;
+export type IRank = 1 | 2 | 3 | 4;
 
 export interface IUserGameData {
   date: Date;
@@ -36,4 +36,11 @@ export interface IGameData {
 export interface IPostGameData {
   date: Date;
   detail: IGameDetail[];
+}
+
+export interface IUserPositionData {
+  north: IGameRough;
+  east: IGameRough;
+  west: IGameRough;
+  south: IGameRough;
 }
