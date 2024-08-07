@@ -30,6 +30,7 @@ export default function UserDropdown({
   return (
     <select
       {...rest}
+      required
       className=" bg-bgSecondary p-2 pr-6 rounded-md invalid:text-gray-300"
       onChange={(e) => {
         onChange(e.target.value);
