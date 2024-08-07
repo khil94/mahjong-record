@@ -18,10 +18,20 @@ const config: Config = {
         white: "var(--color-white)",
         black: "var(--color-black)",
         main: "var(--color-primary)",
+        darkMain: "var(--color-dark-primary)",
         bgPrimary: "var(--color-background-primary)",
         bgSecondary: "var(--color-background-secondary)",
         border: "var(--color-border)",
         text: "var(--color-text)",
+      },
+      screens: {
+        sm: { max: "640px" },
+        // => @media (min-width: 640px) { ... }
+
+        md: { max: "768px" },
+        // => @media (min-width: 768px) { ... }
+
+        lg: { max: "1024px" },
       },
     },
   },
