@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #24edcf;
   --color-white: #ffffff;
   --color-black: #1f2e3d;
 }
 @media (prefers-color-scheme: light) {
   html {
+    --color-primary: #24edcf;
     --color-background-primary: #ffffff;
     --color-background-secondary: #d2d4d6;
     --color-border: #d2d4d6;
@@ -18,6 +18,7 @@
 
 @media (prefers-color-scheme: dark) {
   html {
+    --color-primary: #00bca0;
     --color-background-primary: #0d1117;
     --color-background-secondary: #24292e;
     --color-border: #515961;
@@ -26,12 +27,14 @@
 }
 
 html[data-theme="dark"] {
+  --color-primary: #00bca0;
   --color-background-primary: #0d1117;
   --color-background-secondary: #24292e;
   --color-border: #515961;
   --color-text: #e6edf3;
 }
 html[data-theme="light"] {
+  --color-primary: #24edcf;
   --color-background-primary: #ffffff;
   --color-background-secondary: #d2d4d6;
   --color-border: #d2d4d6;
@@ -209,8 +212,8 @@ select {
   /* border: 1px solid white; */
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
