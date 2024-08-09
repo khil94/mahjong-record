@@ -221,3 +221,11 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+svg {
+  fill: var(--color-background-primary);
+}
+
+path {
+  stroke: var(--color-text);
+}
