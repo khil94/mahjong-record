@@ -223,7 +223,7 @@ input[type="number"] {
 }
 
 svg {
-  fill: var(--color-background-primary);
+  fill: var(--color-text);
 }
 
 path {
