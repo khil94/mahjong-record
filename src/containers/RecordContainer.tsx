@@ -45,7 +45,7 @@ export default function RecordContainer({ handleSubmit, visible }: IProp) {
         <UserRecordData onChange={(d) => handleUserRecordData(d, "east")} />
       </div>
       <UserRecordData onChange={(d) => handleUserRecordData(d, "south")} />
-      <div className="w-2/12">
+      <div className="w-24">
         <Button colorType="main" text="제출" type="submit" />
       </div>
     </form>
