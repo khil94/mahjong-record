@@ -1,6 +1,5 @@
-"use client";
-
 import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
 
 export default function GlobalLayout({
   children,
@@ -8,11 +7,10 @@ export default function GlobalLayout({
   children?: React.ReactNode;
 }) {
   return (
-    <div
-      className={` bg-bgPrimary text-text min-h-lvh flex flex-col items-center`}
-    >
+    <div className={` bg-bgPrimary text-text `}>
       <Navbar />
-      {children}
+      <Sidebar />
+      <div className="pl-24 sm:pl-0 sm:pt-24">{children}</div>
     </div>
   );
 }
