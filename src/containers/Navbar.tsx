@@ -13,33 +13,36 @@ export default function Navbar() {
 
   return (
     <div
-      className="hidden sm:w-full sm:flex justify-end 
-    items-center bg-transparent
-    sticky top-0 left-0 backdrop-blur-lg
-    border-solid border-b border-border
-    p-4"
+      className={`${
+        isOpen ? "" : "border-b "
+      } hidden w-full sm:flex fixed left-0 border-solid border-border h-20`}
     >
-      <div onClick={() => setIsOpen(!isOpen)}>
-        <BurgerBar width={40} height={40} />
+      <div className="backdrop-blur-lg w-full p-4 flex justify-end items-center ">
+        <div onClick={() => setIsOpen(!isOpen)}>
+          <BurgerBar width={50} height={50} />
+        </div>
       </div>
       <div
-        onClick={() => setIsOpen(false)}
         className={`${
           isOpen ? `flex` : "hidden"
-        } absolute flex-col gap-8  w-full top-0 right-0 p-4 items-end bg-bgPrimary border-solid border-b border-border`}
+        } absolute  top-20 right-0 p-4 w-full
+          backdrop-blur-lg
+          border-solid border-b border-border`}
       >
-        <div className="" onClick={() => setIsOpen(!isOpen)}>
-          <BurgerBar width={40} height={40} />
+        <div
+          className="flex w-full flex-col gap-8  items-end "
+          onClick={() => setIsOpen(false)}
+        >
+          <Link href={"/"}>
+            <Home width={50} height={50} />
+          </Link>
+          <Link href={"/record"}>
+            <Record width={50} height={50} />
+          </Link>
+          <Link href={"/records"}>
+            <Records width={50} height={50} />
+          </Link>
         </div>
-        <Link href={"/"}>
-          <Home width={50} height={50} />
-        </Link>
-        <Link href={"/record"}>
-          <Record width={50} height={50} />
-        </Link>
-        <Link href={"/records"}>
-          <Records width={50} height={50} />
-        </Link>
       </div>
     </div>
   );
