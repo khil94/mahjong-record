@@ -62,7 +62,7 @@ export default function RecordPage() {
   }
 
   return (
-    <div className="w-full flex flex-col justify-center items-center h-svh p-4">
+    <div className="w-full flex flex-col justify-center items-center p-4">
       <RecordContainer
         visible={idx === 0 ? "visible" : "hidden"}
         handleSubmit={(v) => {
