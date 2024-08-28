@@ -17,10 +17,10 @@ export default function UserDropdown({
 
   useEffect(() => {
     const getUsers = async () => {
-      const test = await getUserData();
+      const resp = await getUserData();
       const temp: IUser[] = [];
-      test.forEach((v) => {
-        temp.push(v.data() as IUser);
+      resp.forEach((v) => {
+        temp.push(v.data());
       });
       setUserData(temp.sort((a, b) => a.name.localeCompare(b.name)));
     };

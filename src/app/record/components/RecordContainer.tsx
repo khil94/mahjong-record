@@ -1,5 +1,5 @@
+import UserRecordData from "@/app/record/components/UserRecordData";
 import Button from "@/components/Button";
-import UserRecordData from "@/components/UserRecordData";
 import { IGameRough, IUserPositionData } from "@/types/dataTypes";
 import Image from "next/image";
 import { useState } from "react";

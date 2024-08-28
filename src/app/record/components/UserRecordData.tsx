@@ -1,8 +1,8 @@
 import { IGameRough } from "@/types/dataTypes";
 import { umaClac } from "@/utils/globalFuncs";
 import { useEffect, useState } from "react";
-import Input from "./Input";
-import UserDropdown from "./UserDropdown";
+import Input from "../../../components/Input";
+import UserDropdown from "../../../components/UserDropdown";
 interface IProp {
   onChange: (data: IGameRough) => void;
 }
