@@ -30,6 +30,7 @@ export default function RecordContainer({ handleSubmit, visible }: IProp) {
       }}
       className={`${visibleProp[visible]} flex flex-col justify-center items-center gap-4`}
     >
+      <span className="mb-8">첫 친을 동가에 배치해주세요.</span>
       <UserRecordData onChange={(d) => handleUserRecordData(d, "north")} />
       <div className="flex flex-row  justify-center items-center gap-4">
         <UserRecordData onChange={(d) => handleUserRecordData(d, "west")} />
