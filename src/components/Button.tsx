@@ -7,18 +7,31 @@ const btnColorList = {
     bgColor: "bg-border",
     disabled: "disabled:bg-bgSecondary",
   },
-};
+} as const;
+
+const btnSizeList = {
+  default: "w-full",
+  lg: "w-72",
+  md: "w-40",
+  sm: "w-24",
+} as const;
 
 interface IProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   colorType: keyof typeof btnColorList;
+  sizeType?: keyof typeof btnSizeList;
 }
 
-export default function Button({ text, colorType, ...rest }: IProp) {
+export default function Button({
+  text,
+  colorType,
+  sizeType = "default",
+  ...rest
+}: IProp) {
   return (
     <button
       {...rest}
-      className={` w-full ${btnColorList[colorType].bgColor} ${btnColorList[colorType].disabled} p-3 rounded-md`}
+      className={`${btnSizeList[sizeType]} ${btnColorList[colorType].bgColor} ${btnColorList[colorType].disabled} p-3 rounded-md`}
     >
       {text}
     </button>
