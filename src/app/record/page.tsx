@@ -1,7 +1,5 @@
 "use client";
 
-import RecordContainer from "@/containers/RecordContainer";
-import RecordResultContainer from "@/containers/RecordResultContainer";
 import {
   IGameDetail,
   IPostGameData,
@@ -10,6 +8,8 @@ import {
 } from "@/types/dataTypes";
 import { finalUmaCalc, positionCalc } from "@/utils/globalFuncs";
 import { useEffect, useState } from "react";
+import RecordContainer from "./components/RecordContainer";
+import RecordResultContainer from "./components/RecordResultContainer";
 
 export default function RecordPage() {
   const [gameData, setGameData] = useState<IPostGameData>();
@@ -52,7 +52,6 @@ export default function RecordPage() {
           userName: v.userName,
         } as IGameDetail;
       });
-    console.log(idx, tempGameData, umaSum);
     setGameData({
       date: new Date(),
       detail: tempGameData,
