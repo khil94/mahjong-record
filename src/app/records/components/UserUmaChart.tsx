@@ -3,14 +3,14 @@
 import { IUser } from "@/types/dataTypes";
 import { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 
 interface IProp {
   userData: IUser[];
 }
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-export default function UserUmaChart({ userData }: IProp) {
+function UmaChart({ userData }: IProp) {
   const makeUmaLineSeries = () => {
     const temp = userData.map((v) => ({
       name: v.name,
@@ -43,7 +43,7 @@ export default function UserUmaChart({ userData }: IProp) {
   };
 
   return (
-    <div className="w-3/4 lg:w-full">
+    <div className="w-full">
       <Chart
         options={userUmaOption}
         series={userUmaData}
@@ -54,3 +54,11 @@ export default function UserUmaChart({ userData }: IProp) {
     </div>
   );
 }
+
+const UserUmaChart = memo(UmaChart, (prev, next) => {
+  return prev.userData.every((v, i) => {
+    if (v.currentUma !== next.userData[i].currentUma) return false;
+  });
+});
+
+export default UserUmaChart;
