@@ -37,3 +37,13 @@ export const converter = <T>() => ({
   toFirestore: (data: T) => data,
   fromFirestore: (snap: QueryDocumentSnapshot) => snap.data() as T,
 });
+
+export const getYYMMDD = (date: Date) => {
+  return `${date.getFullYear() % 100}-${addZeroToNumber(
+    date.getMonth()
+  )}-${addZeroToNumber(date.getDay())}`;
+};
+
+export const addZeroToNumber = (numb: number) => {
+  return numb >= 10 ? `${numb}` : `0${numb}`;
+};
