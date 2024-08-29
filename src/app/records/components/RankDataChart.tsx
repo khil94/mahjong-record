@@ -15,7 +15,11 @@ function RankChart({ userData }: IProp) {
     };
     userData.history.forEach((v) => rankObj[v.rank]++);
     return (
-      <tr className="w-full bg-border">
+      <tr
+        className={`${
+          rank === 1 ? "font-bold bg-main text-white" : "bg-border"
+        } w-full `}
+      >
         <td>{rank}</td>
         <td>{userData.name}</td>
         <td>{userData.currentUma}</td>
@@ -31,7 +35,7 @@ function RankChart({ userData }: IProp) {
 
   return (
     <div className="w-full h-full overflow-x-scroll scrollbar-hide">
-      <table className="w-full h-full text-center min-w-[40%] table-auto whitespace-nowrap">
+      <table className="w-full h-full [&_td]:align-middle min-w-[40%] table-auto whitespace-nowrap">
         <thead className="bg-bgSecondary">
           <tr className="[&_th]:p-2 ">
             <th>순위</th>
