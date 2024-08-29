@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 interface IProp extends React.SelectHTMLAttributes<HTMLSelectElement> {
   onChange: (v: any) => void;
   placeholder?: string;
+  customClass?: string;
 }
 
 export default function UserDropdown({
   onChange,
   placeholder,
+  customClass,
   ...rest
 }: IProp) {
   const [userData, setUserData] = useState<IUser[]>([]);
@@ -31,7 +33,7 @@ export default function UserDropdown({
     <select
       {...rest}
       required
-      className=" bg-bgSecondary p-2 pr-6 rounded-md invalid:text-gray-300"
+      className={`${customClass} bg-bgSecondary p-2 pr-6 rounded-md invalid:text-gray-300`}
       onChange={(e) => {
         onChange(e.target.value);
       }}
