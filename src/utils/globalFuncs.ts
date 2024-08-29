@@ -1,4 +1,5 @@
 import { IRank, IUserPositionData } from "@/types/dataTypes";
+import { QueryDocumentSnapshot } from "firebase/firestore";
 
 export const umaClac = (score: number) => {
   const tempScore = (score - 30000) / 1000;
@@ -31,3 +32,8 @@ export const positionCalc = (
 ) => {
   return positionScore[a] - positionScore[b];
 };
+
+export const converter = <T>() => ({
+  toFirestore: (data: T) => data,
+  fromFirestore: (snap: QueryDocumentSnapshot) => snap.data() as T,
+});
