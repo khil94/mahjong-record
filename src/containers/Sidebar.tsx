@@ -12,7 +12,7 @@ export default function Sidebar() {
     <aside
       className=" flex flex-col justify-center border-solid 
         items-center border-r-4 border-border p-4 
-        fixed left-0 h-lvh w-20
+        fixed left-0 h-full w-20
         sm:hidden
         "
     >
