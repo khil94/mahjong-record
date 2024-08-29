@@ -32,7 +32,11 @@ export default function RecordResultContainer({
 
   function UserDataComp({ userData }: { userData: IGameDetail }) {
     return (
-      <tr className="w-full bg-border">
+      <tr
+        className={`${
+          userData.rank === 1 && "font-bold text-red-400"
+        } w-full bg-border`}
+      >
         <td>{userData.rank}</td>
         <td>{userData.userName}</td>
         <td>{userData.score}</td>
@@ -46,15 +50,8 @@ export default function RecordResultContainer({
       className={`${visibleProp[visible]} w-full flex justify-center items-center flex-col gap-8 `}
     >
       <h1>입력 결과</h1>
-      <table className="overflow-x-scroll text-center min-w-[40%] ">
-        <colgroup>
-          <col width={"20%"} />
-          <col width={"30%"} />
-          <col width={"30%"} />
-          <col width={"20%"} />
-        </colgroup>
-
-        <thead className="bg-bgSecondary">
+      <table className="overflow-x-scroll text-center min-w-[40%] table-auto whitespace-nowrap [&_td]:align-middle">
+        <thead className=" bg-main text-white">
           <tr className="[&_th]:p-2 ">
             <th>순위</th>
             <th>이름</th>
@@ -83,6 +80,7 @@ export default function RecordResultContainer({
           <Button
             sizeType="sm"
             colorType={"main"}
+            customClass="text-white"
             disabled={umaSum !== 0 || userDup}
             onClick={onCancel}
             text={"제출"}
