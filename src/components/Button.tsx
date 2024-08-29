@@ -18,13 +18,13 @@ const btnSizeList = {
 
 interface IProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  colorType: keyof typeof btnColorList;
+  colorType?: keyof typeof btnColorList;
   sizeType?: keyof typeof btnSizeList;
 }
 
 export default function Button({
   text,
-  colorType,
+  colorType = "main",
   sizeType = "default",
   ...rest
 }: IProp) {
