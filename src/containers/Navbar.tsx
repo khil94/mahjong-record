@@ -19,7 +19,12 @@ export default function Navbar() {
     >
       <div className="backdrop-blur-lg w-full p-4 flex justify-end items-center ">
         <div onClick={() => setIsOpen(!isOpen)}>
-          <BurgerBar width={50} height={50} />
+          <BurgerBar
+            width={50}
+            height={50}
+            stroke="var(--color-text)"
+            fill="var(--color-text)"
+          />
         </div>
       </div>
       <div
@@ -34,13 +39,23 @@ export default function Navbar() {
           onClick={() => setIsOpen(false)}
         >
           <Link href={"/"}>
-            <Home width={50} height={50} />
+            <Home width={50} height={50} stroke="var(--color-text)" />
           </Link>
           <Link href={"/record"}>
-            <Record width={50} height={50} />
+            <Record
+              width={50}
+              height={50}
+              fill="var(--color-text)"
+              stroke="var(--color-text)"
+            />
           </Link>
           <Link href={"/records"}>
-            <Records width={50} height={50} />
+            <Records
+              width={50}
+              height={50}
+              stroke="var(--color-text)"
+              fill="var(--color-text)"
+            />
           </Link>
         </div>
       </div>

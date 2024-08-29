@@ -222,10 +222,6 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-svg {
-  fill: var(--color-text);
-}
-
-path {
-  stroke: var(--color-text);
+.apexcharts-canvas {
+  color: black;
 }
