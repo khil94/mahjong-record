@@ -23,6 +23,8 @@ const config: Config = {
         bgSecondary: "var(--color-background-secondary)",
         border: "var(--color-border)",
         text: "var(--color-text)",
+        bgOpp: "var(--color-background-opposite)",
+        textOpp: "var(--color-text-opposite)",
       },
       screens: {
         sm: { max: "640px" },
