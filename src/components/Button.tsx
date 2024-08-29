@@ -20,18 +20,20 @@ interface IProp extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   colorType?: keyof typeof btnColorList;
   sizeType?: keyof typeof btnSizeList;
+  customClass?: string;
 }
 
 export default function Button({
   text,
   colorType = "main",
   sizeType = "default",
+  customClass,
   ...rest
 }: IProp) {
   return (
     <button
       {...rest}
-      className={`${btnSizeList[sizeType]} ${btnColorList[colorType].bgColor} ${btnColorList[colorType].disabled} p-3 rounded-md`}
+      className={`${customClass} ${btnSizeList[sizeType]} ${btnColorList[colorType].bgColor} ${btnColorList[colorType].disabled} p-3 rounded-md`}
     >
       {text}
     </button>
