@@ -1,9 +1,9 @@
 import { IUser } from "@/types/dataTypes";
-
+import { memo } from "react";
 interface IProp {
   userData: IUser[];
 }
-export default function RankDataChart({ userData }: IProp) {
+function RankChart({ userData }: IProp) {
   const rankData = userData.sort((a, b) => b.currentUma - a.currentUma);
 
   function UserDataComp({ userData, rank }: { rank: number; userData: IUser }) {
@@ -30,8 +30,8 @@ export default function RankDataChart({ userData }: IProp) {
   }
 
   return (
-    <div className="overflow-x-scroll scrollbar-hide">
-      <table className=" text-center min-w-[40%] table-auto whitespace-nowrap">
+    <div className="w-full h-full overflow-x-scroll scrollbar-hide">
+      <table className="w-full h-full text-center min-w-[40%] table-auto whitespace-nowrap">
         <thead className="bg-bgSecondary">
           <tr className="[&_th]:p-2 ">
             <th>순위</th>
@@ -55,3 +55,11 @@ export default function RankDataChart({ userData }: IProp) {
     </div>
   );
 }
+
+const RankDataChart = memo(RankChart, (prev, next) => {
+  return prev.userData.every((v, i) => {
+    if (v.currentUma !== next.userData[i].currentUma) return false;
+  });
+});
+
+export default RankDataChart;
