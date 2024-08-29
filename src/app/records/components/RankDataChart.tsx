@@ -30,7 +30,7 @@ export default function RankDataChart({ userData }: IProp) {
   }
 
   return (
-    <div className="overflow-x-scroll">
+    <div className="overflow-x-scroll scrollbar-hide">
       <table className=" text-center min-w-[40%] table-auto whitespace-nowrap">
         <thead className="bg-bgSecondary">
           <tr className="[&_th]:p-2 ">
