@@ -131,6 +131,10 @@ video {
   vertical-align: baseline;
   box-sizing: border-box;
 }
+html,
+body {
+  height: 100%;
+}
 html {
   user-select: none;
   -webkit-touch-callout: none;
