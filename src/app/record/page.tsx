@@ -72,7 +72,6 @@ export default function RecordPage() {
         visible={idx === 1 ? "visible" : "hidden"}
         data={gameData}
         onCancel={() => {
-          setUmaSum(0);
           setIdx(0);
         }}
         umaSum={umaSum}
