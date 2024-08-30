@@ -47,7 +47,7 @@ function HistoryComp({ gameData }: IProp) {
   }
 
   return (
-    <div className="w-full h-full overflow-y-scroll grid grid-cols-2 md:grid-cols-1 p-4 gap-4 ">
+    <div className="w-full h-full overflow-y-scroll grid grid-cols-1 mmd:grid-cols-2 mlg:grid-cols-3 p-4 gap-4 ">
       {gameData.slice(page * DATA_SIZE, (page + 1) * DATA_SIZE).map((v) => {
         return <GameHistoryData data={v} />;
       })}
