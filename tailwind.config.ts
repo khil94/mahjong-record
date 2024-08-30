@@ -29,11 +29,13 @@ const config: Config = {
       screens: {
         sm: { max: "640px" },
         // => @media (min-width: 640px) { ... }
-
         md: { max: "768px" },
         // => @media (min-width: 768px) { ... }
-
         lg: { max: "1024px" },
+
+        msm: { min: "640px" },
+        mmd: { min: "768px" },
+        mlg: { min: "1024px" },
       },
     },
   },
