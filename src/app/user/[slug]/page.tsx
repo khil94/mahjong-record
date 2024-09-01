@@ -16,7 +16,7 @@ export default function UserDetail({ params }: IProp) {
         <LineChart name={target} />
       </div>
       <div className=" w-4/5 sm:w-full">
-        <h2>경기 내역</h2>
+        <h2 className="text-2xl font-bold mb-8">대전 기록</h2>
         <History name={target} />
       </div>
     </div>
