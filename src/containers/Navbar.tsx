@@ -15,7 +15,7 @@ export default function Navbar() {
     <div
       className={`${
         isOpen ? "" : "border-b "
-      } hidden w-full sm:flex fixed left-0 border-solid border-border h-20`}
+      } hidden w-full sm:flex fixed left-0 border-solid border-border h-20 z-10`}
     >
       <div className="backdrop-blur-lg w-full p-4 flex justify-end items-center ">
         <div onClick={() => setIsOpen(!isOpen)}>
