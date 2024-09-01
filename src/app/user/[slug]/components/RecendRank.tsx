@@ -24,7 +24,15 @@ export default function RecentRank({ data, targetData }: IProp) {
         {targetData.rank}
       </div>
       {showDesc && (
-        <div className="bg-main text-white flex flex-col w-52 rounded-md absolute p-6 top-0 left-1/2 translate-x-[-50%] translate-y-[-100%]">
+        <div
+          className="bg-main text-white flex flex-col w-52 
+        rounded-md absolute p-6 top-0 left-1/2 
+        translate-x-[-50%] translate-y-[-100%]
+        after:absolute after:w-3 after:h-3 after:border-t-[10px] after:border-r-[10px]
+        after:border-main after:left-1/2 after:bottom-0 
+        after:translate-x-[-50%] after:translate-y-[0.4rem] after:rotate-[135deg]
+        "
+        >
           <span>{getYYMMDD(new Date(data.date))}</span>
           {data.detail.map((k) => (
             <span>{`${k.rank}위 ${k.userName} : ${k.score}`}</span>
