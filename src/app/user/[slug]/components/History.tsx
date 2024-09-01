@@ -3,8 +3,8 @@ import { getAllGameData } from "@/api/firebase";
 import GameHistory from "@/components/GameHistory";
 import Loading from "@/components/Loading";
 import { IGameData } from "@/types/dataTypes";
-import { paintRank } from "@/utils/globalFuncs";
 import { useEffect, useState } from "react";
+import RecentRank from "./RecendRank";
 
 interface IProp {
   name: string;
@@ -32,16 +32,8 @@ export default function History({ name }: IProp) {
       <div className="flex w-full justify-evenly pb-8 md:grid md:grid-cols-5 md:grid-rows-2">
         {gameData.slice(0, 10).map((v, i) => {
           const temp = v.detail.find((k) => k.userName === name);
-          return (
-            <div
-              className={` text-lg ${paintRank(
-                temp.rank
-              )} p-4 pl-6 pr-6 rounded-xl border-solid border-border border-2`}
-              key={`recent-game-${i}`}
-            >
-              {temp.rank}
-            </div>
-          );
+          // key={`recent-game-${i}`}
+          return <RecentRank data={v} targetData={temp} />;
         })}
       </div>
     );
