@@ -25,6 +25,10 @@ const config: Config = {
         text: "var(--color-text)",
         bgOpp: "var(--color-background-opposite)",
         textOpp: "var(--color-text-opposite)",
+        blue: "var(--color-blue)",
+        green: "var(--color-green)",
+        yellow: "var(--color-yellow)",
+        red: "var(--color-red)",
       },
       screens: {
         sm: { max: "640px" },

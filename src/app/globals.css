@@ -5,6 +5,10 @@
 :root {
   --color-white: #ffffff;
   --color-black: #1f2e3d;
+  --color-blue: #008efb;
+  --color-green: #00e396;
+  --color-yellow: #feb019;
+  --color-red: #ff4561;
 }
 @media (prefers-color-scheme: light) {
   html {

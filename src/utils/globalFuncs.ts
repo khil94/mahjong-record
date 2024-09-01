@@ -47,3 +47,18 @@ export const getYYMMDD = (date: Date) => {
 export const addZeroToNumber = (numb: number) => {
   return numb >= 10 ? `${numb}` : `0${numb}`;
 };
+
+export const paintRank = (rank: number) => {
+  switch (rank) {
+    case 1:
+      return "border-blue font-bold text-blue";
+    case 2:
+      return "border-green text-green";
+    case 3:
+      return "border-yellow text-yellow";
+    case 4:
+      return "border-red text-red";
+    default:
+      return "";
+  }
+};

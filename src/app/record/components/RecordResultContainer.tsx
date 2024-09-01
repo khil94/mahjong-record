@@ -32,7 +32,7 @@ export default function RecordResultContainer({
     return (
       <tr
         className={`${
-          userData.rank === 1 && "font-bold text-red-400"
+          userData.rank === 1 && "font-bold text-red"
         } w-full bg-border`}
       >
         <td>{userData.rank}</td>
