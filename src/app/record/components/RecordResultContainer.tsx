@@ -20,16 +20,12 @@ export default function RecordResultContainer({
   data,
   visible,
 }: IProp) {
-  function checkDup() {
+  const userDup = useMemo(() => {
     if (data?.detail) {
       const temp = new Set(data.detail.map((v) => v.userName));
       return temp.size !== 4;
     }
     return false;
-  }
-
-  const userDup = useMemo(() => {
-    return checkDup();
   }, [data]);
 
   function UserDataComp({ userData }: { userData: IGameDetail }) {

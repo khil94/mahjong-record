@@ -15,9 +15,9 @@ export default function ChartWrapper({ gameData, userData }: IProp) {
     <MultitabLayout
       tabList={["리더보드", "우마 그래프", "게임 기록"]}
       tabCompList={[
-        <RankDataChart userData={userData} />,
-        <UserUmaChart userData={userData} />,
-        <GameHistory gameData={gameData} />,
+        <RankDataChart key={`multitab-rank-data`} userData={userData} />,
+        <UserUmaChart key={`multitab-user-leaderboard`} userData={userData} />,
+        <GameHistory key={`multitab-game-history`} gameData={gameData} />,
       ]}
     />
   );

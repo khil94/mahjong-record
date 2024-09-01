@@ -33,6 +33,7 @@ function HistoryComp({ gameData, target, sizeType = "default" }: IProp) {
           {data.detail.map((v) => {
             return (
               <div
+                key={`game-history-${data.id}-${v.userName}-${date}`}
                 className={`${
                   v.rank === 1
                     ? "bg-bgOpp text-red-400 font-bold"
@@ -63,7 +64,7 @@ function HistoryComp({ gameData, target, sizeType = "default" }: IProp) {
       className={`w-full h-full overflow-y-scroll grid ${HistoryColList[sizeType]} gap-4 `}
     >
       {gameData.slice(page * DATA_SIZE, (page + 1) * DATA_SIZE).map((v) => {
-        return <GameHistoryData data={v} />;
+        return <GameHistoryData key={`game-history-data-${v.id}`} data={v} />;
       })}
       <div className="w-full flex justify-center col-span-full gap-4 [&_span]:cursor-pointer hover:[&_span]:font-bold">
         {pageSet >= 1 && (
@@ -89,6 +90,7 @@ function HistoryComp({ gameData, target, sizeType = "default" }: IProp) {
           .fill(0)
           .map((_, i) => (
             <span
+              key={`page-list-${i}`}
               className={`${PAGE_SIZE * pageSet + i === page && "font-bold"} `}
               onClick={() => setPage(PAGE_SIZE * pageSet + i)}
             >
