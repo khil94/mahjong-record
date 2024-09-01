@@ -70,6 +70,6 @@ export const paintRank1and4 = (rank: number) => {
     case 4:
       return "border-red text-red";
     default:
-      return "border-border text-border";
+      return "";
   }
 };
