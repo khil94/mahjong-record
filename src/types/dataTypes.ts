@@ -28,13 +28,13 @@ export interface IGameRough {
 }
 
 export interface IGameData {
-  date: Date;
+  date: string;
   detail: IGameDetail[];
   id: string;
 }
 
 export interface IPostGameData {
-  date: Date;
+  date: string;
   detail: IGameDetail[];
 }
 
