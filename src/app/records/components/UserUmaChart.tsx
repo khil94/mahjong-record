@@ -1,14 +1,12 @@
 "use client";
 
+import LineChartComp from "@/components/LineChartComp";
 import { IUser } from "@/types/dataTypes";
-import { ApexOptions } from "apexcharts";
-import dynamic from "next/dynamic";
 import { memo, useMemo } from "react";
 
 interface IProp {
   userData: IUser[];
 }
-const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 function UmaChart({ userData }: IProp) {
   const makeUmaLineSeries = () => {
@@ -22,39 +20,9 @@ function UmaChart({ userData }: IProp) {
   };
   const userUmaData = useMemo(() => makeUmaLineSeries(), [userData]);
 
-  const userUmaOption: ApexOptions = {
-    chart: {
-      height: 350,
-      type: "line",
-      zoom: {
-        enabled: false,
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    stroke: {
-      curve: "straight",
-    },
-    title: {
-      text: "우마 변동 내역",
-      align: "left",
-      style: {
-        color: "var(--color-text)",
-        fontSize: "24px",
-      },
-    },
-  };
-
   return (
-    <div className="w-full">
-      <Chart
-        options={userUmaOption}
-        series={userUmaData}
-        type="line"
-        height={500}
-        width={"100%"}
-      />
+    <div className="w-full h-1/2 p-8">
+      <LineChartComp series={userUmaData} />
     </div>
   );
 }
