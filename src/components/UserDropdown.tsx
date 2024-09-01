@@ -1,7 +1,6 @@
 "use client";
-import { getUserData } from "@/api/firebase";
-import { IUser } from "@/types/dataTypes";
-import { useEffect, useState } from "react";
+import { UserRootState } from "@/lib/store";
+import { useSelector } from "react-redux";
 
 interface IProp extends React.SelectHTMLAttributes<HTMLSelectElement> {
   onChange: (v: any) => void;
@@ -15,19 +14,7 @@ export default function UserDropdown({
   customClass,
   ...rest
 }: IProp) {
-  const [userData, setUserData] = useState<IUser[]>([]);
-
-  useEffect(() => {
-    const getUsers = async () => {
-      const resp = await getUserData();
-      const temp: IUser[] = [];
-      resp.forEach((v) => {
-        temp.push(v.data());
-      });
-      setUserData(temp.sort((a, b) => a.name.localeCompare(b.name)));
-    };
-    getUsers();
-  }, []);
+  const userData = useSelector((state: UserRootState) => state.users.users);
 
   return (
     <select
