@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/components/Loading";
 import { UserRootState } from "@/lib/store";
 import { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
@@ -59,9 +60,9 @@ export default function PieChart({ name }: IProp) {
   };
 
   return (
-    <div className="md:h-80">
+    <div className="md:h-80 flex justify-center items-center">
       {loading ? (
-        <>Loading</>
+        <Loading size={50} />
       ) : (
         <Chart
           options={userOption}

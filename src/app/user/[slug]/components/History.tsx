@@ -1,6 +1,7 @@
 "use client";
 import { getAllGameData } from "@/api/firebase";
 import GameHistory from "@/components/GameHistory";
+import Loading from "@/components/Loading";
 import { IGameData } from "@/types/dataTypes";
 import { useEffect, useState } from "react";
 
@@ -26,9 +27,9 @@ export default function History({ name }: IProp) {
   }, []);
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full flex justify-center items-center">
       {loading ? (
-        <></>
+        <Loading size={50} />
       ) : (
         <GameHistory target={name} gameData={gameData} sizeType="md" />
       )}
