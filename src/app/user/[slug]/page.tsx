@@ -1,58 +1,24 @@
-"use client";
-
-import { ApexOptions } from "apexcharts";
-import dynamic from "next/dynamic";
-
+import History from "./components/History";
+import LineChart from "./components/LineChart";
+import PieChart from "./components/PieChart";
 interface IProp {
   params: { slug: string };
 }
-const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-
-const userUmaOption: ApexOptions = {
-  chart: {
-    height: 350,
-    type: "line",
-    zoom: {
-      enabled: false,
-    },
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  stroke: {
-    curve: "straight",
-  },
-  title: {
-    text: "우마 변동 내역",
-    align: "left",
-  },
-};
-
-const userRankOption: ApexOptions = {
-  // plotOptions:{
-
-  // },
-  chart: {
-    height: 350,
-    type: "donut",
-    zoom: {
-      enabled: false,
-    },
-  },
-  dataLabels: {
-    enabled: false,
-    formatter: function (val) {
-      return val + "%";
-    },
-  },
-  title: {
-    text: "순위 비율",
-    align: "left",
-  },
-};
 
 export default function UserDetail({ params }: IProp) {
-  console.log("parmas", decodeURIComponent(params.slug));
+  const target = decodeURIComponent(params.slug);
 
-  return <div>UserDetailPage</div>;
+  return (
+    <div className="w-full h-full gap-16 p-8 flex flex-col items-center overflow-auto scrollbar-hide">
+      <h1 className="text-3xl font-bold">{`${target}의 상세 정보`}</h1>
+      <div className="flex h-1/2 w-full md:h-full [&_div]:flex-grow md:flex-col">
+        <PieChart name={target} />
+        <LineChart name={target} />
+      </div>
+      <div className=" w-4/5 sm:w-full">
+        <h2>경기 내역</h2>
+        <History name={target} />
+      </div>
+    </div>
+  );
 }
