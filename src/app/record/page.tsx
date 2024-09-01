@@ -1,5 +1,9 @@
 "use client";
 
+import { postUserData } from "@/api/firebase";
+import { useAppDispatch } from "@/hooks/userAppDispatch";
+import { fetchUsers } from "@/lib/features/users/usersSlice";
+import { UserAppDispatch, UserRootState } from "@/lib/store";
 import {
   IGameDetail,
   IPostGameData,
@@ -8,6 +12,7 @@ import {
 } from "@/types/dataTypes";
 import { finalUmaCalc, positionCalc } from "@/utils/globalFuncs";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import RecordContainer from "./components/RecordContainer";
 import RecordResultContainer from "./components/RecordResultContainer";
 
@@ -15,7 +20,9 @@ export default function RecordPage() {
   const [gameData, setGameData] = useState<IPostGameData>();
   const [idx, setIdx] = useState(0);
   const [umaSum, setUmaSum] = useState(0);
-  const [btnDisable, setBtnDisable] = useState(true);
+
+  const userData = useSelector((state: UserRootState) => state.users.users);
+  const dispatch = useAppDispatch<UserAppDispatch>();
 
   useEffect(() => {
     if (gameData) {
@@ -53,11 +60,16 @@ export default function RecordPage() {
         } as IGameDetail;
       });
     setGameData({
-      date: new Date(),
+      date: new Date().toString(),
       detail: tempGameData,
     });
 
     setIdx(1);
+  }
+
+  function handleSubmitData(data: IPostGameData) {
+    postUserData(data, userData);
+    dispatch(fetchUsers());
   }
 
   return (
@@ -71,6 +83,7 @@ export default function RecordPage() {
       <RecordResultContainer
         visible={idx === 1 ? "visible" : "hidden"}
         data={gameData}
+        onSubmit={handleSubmitData}
         onCancel={() => {
           setIdx(0);
         }}

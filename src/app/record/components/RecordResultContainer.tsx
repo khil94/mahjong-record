@@ -3,6 +3,7 @@ import { IGameDetail, IPostGameData } from "@/types/dataTypes";
 import { useMemo } from "react";
 interface IProp {
   onCancel: () => void;
+  onSubmit: (data: IPostGameData) => void;
   umaSum: number;
   data: IPostGameData;
   visible?: keyof typeof visibleProp;
@@ -14,6 +15,7 @@ const visibleProp = {
 
 export default function RecordResultContainer({
   onCancel,
+  onSubmit,
   umaSum,
   data,
   visible,
@@ -82,7 +84,10 @@ export default function RecordResultContainer({
             colorType={"main"}
             customClass="text-white"
             disabled={umaSum !== 0 || userDup}
-            onClick={onCancel}
+            onClick={() => {
+              onSubmit(data);
+              onCancel();
+            }}
             text={"제출"}
           />
         </div>
