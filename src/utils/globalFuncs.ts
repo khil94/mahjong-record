@@ -62,3 +62,14 @@ export const paintRank = (rank: number) => {
       return "";
   }
 };
+
+export const paintRank1and4 = (rank: number) => {
+  switch (rank) {
+    case 1:
+      return "border-blue font-bold text-blue";
+    case 4:
+      return "border-red text-red";
+    default:
+      return "border-border text-border";
+  }
+};
