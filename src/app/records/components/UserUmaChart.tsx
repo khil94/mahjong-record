@@ -39,6 +39,10 @@ function UmaChart({ userData }: IProp) {
     title: {
       text: "우마 변동 내역",
       align: "left",
+      style: {
+        color: "var(--color-text)",
+        fontSize: "24px",
+      },
     },
   };
 

@@ -21,6 +21,7 @@ const userOption: ApexOptions = {
       enabled: false,
     },
   },
+
   dataLabels: {
     enabled: false,
   },
@@ -30,6 +31,10 @@ const userOption: ApexOptions = {
   title: {
     text: "우마 변동 내역",
     align: "left",
+    style: {
+      color: "var(--color-text)",
+      fontSize: "24px",
+    },
   },
 };
 
