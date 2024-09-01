@@ -21,6 +21,9 @@ export default function History({ name }: IProp) {
         resp.docs
           .map((v) => ({ ...v.data() }))
           .filter((t) => t.detail.some((k) => k.userName === name))
+          .sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+          )
       );
       setLoading(false);
     };
