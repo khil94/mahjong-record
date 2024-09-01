@@ -2,15 +2,21 @@ import { IGameData } from "@/types/dataTypes";
 import { getYYMMDD } from "@/utils/globalFuncs";
 import { memo, useState } from "react";
 
-interface IProp {
-  gameData: IGameData[];
-  target?: string;
-}
-
 const DATA_SIZE = 20;
 const PAGE_SIZE = 5;
 
-function HistoryComp({ gameData, target }: IProp) {
+const HistoryColList = {
+  default: "grid-cols-1 mmd:grid-cols-2 mlg:grid-cols-3",
+  md: "grid-cols-1 mlg:grid-cols-2 mxlg:grid-cols-3",
+} as const;
+
+interface IProp {
+  gameData: IGameData[];
+  target?: string;
+  sizeType?: keyof typeof HistoryColList;
+}
+
+function HistoryComp({ gameData, target, sizeType = "default" }: IProp) {
   gameData.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
@@ -50,7 +56,9 @@ function HistoryComp({ gameData, target }: IProp) {
   }
 
   return (
-    <div className="w-full h-full overflow-y-scroll grid grid-cols-1 mmd:grid-cols-2 mlg:grid-cols-3 gap-4 ">
+    <div
+      className={`w-full h-full overflow-y-scroll grid ${HistoryColList[sizeType]} gap-4 `}
+    >
       {gameData.slice(page * DATA_SIZE, (page + 1) * DATA_SIZE).map((v) => {
         return <GameHistoryData data={v} />;
       })}
