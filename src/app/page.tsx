@@ -13,7 +13,10 @@ export default function Home() {
   const { loading } = useSelector((state: UserRootState) => state.users);
 
   return (
-    <main className="flex flex-col items-center justify-between w-full p-8">
+    <main className="flex flex-col items-start gap-16 w-full p-8">
+      <h1 className=" font-bold text-5xl sm:text-2xl">
+        누에단 마작 기록 사이트
+      </h1>
       <div className="flex flex-row justify-center items-center w-1/2 md:w-full gap-4">
         {loading ? (
           <Loading size={24} />
