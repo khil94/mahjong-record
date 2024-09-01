@@ -1,6 +1,7 @@
 import GlobalLayout from "@/containers/GlobalLayout";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import UserStoreProvider from "./UserStoreProvider";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={inter.className}>
-        <GlobalLayout>{children}</GlobalLayout>
+        <UserStoreProvider>
+          <GlobalLayout>{children}</GlobalLayout>
+        </UserStoreProvider>
       </body>
     </html>
   );
