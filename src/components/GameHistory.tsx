@@ -3,7 +3,7 @@ import { getYYMMDD } from "@/utils/globalFuncs";
 import Link from "next/link";
 import { memo, useState } from "react";
 
-const DATA_SIZE = 20;
+const DATA_SIZE = 30;
 const PAGE_SIZE = 5;
 
 const HistoryColList = {
