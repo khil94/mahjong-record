@@ -35,7 +35,7 @@ function RankChart({ userData }: IProp) {
 
   return (
     <div className="w-full h-full overflow-x-scroll scrollbar-hide">
-      <table className="w-full h-full [&_td]:align-middle min-w-[40%] table-auto whitespace-nowrap">
+      <table className="w-full h-full [&_td]:align-middle text-center min-w-[40%] table-auto whitespace-nowrap">
         <thead className="bg-bgSecondary">
           <tr className="[&_th]:p-2 ">
             <th>순위</th>
