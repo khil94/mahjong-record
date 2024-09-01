@@ -4,7 +4,7 @@ import GameHistory from "@/components/GameHistory";
 import Loading from "@/components/Loading";
 import { IGameData } from "@/types/dataTypes";
 import { useEffect, useState } from "react";
-import RecentRank from "./RecendRank";
+import RecentRank from "./RecentRank";
 
 interface IProp {
   name: string;
