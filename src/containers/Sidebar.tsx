@@ -1,13 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import Home from "../../public/home.svg";
 import Record from "../../public/record.svg";
 import Records from "../../public/records.svg";
+import ScoreTable from "../../public/score-table.svg";
 
 export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <aside
       className=" flex flex-col justify-center border-solid 
@@ -30,6 +29,14 @@ export default function Sidebar() {
         </Link>
         <Link href={"/records"}>
           <Records
+            width={50}
+            height={50}
+            stroke="var(--color-text)"
+            fill="var(--color-text)"
+          />
+        </Link>
+        <Link href={"/score-table"}>
+          <ScoreTable
             width={50}
             height={50}
             stroke="var(--color-text)"

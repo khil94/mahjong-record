@@ -5,6 +5,7 @@ import BurgerBar from "../../public/burger-bar.svg";
 import Home from "../../public/home.svg";
 import Record from "../../public/record.svg";
 import Records from "../../public/records.svg";
+import ScoreTable from "../../public/score-table.svg";
 
 import { useState } from "react";
 
@@ -51,6 +52,14 @@ export default function Navbar() {
           </Link>
           <Link href={"/records"}>
             <Records
+              width={50}
+              height={50}
+              stroke="var(--color-text)"
+              fill="var(--color-text)"
+            />
+          </Link>
+          <Link href={"/score-table"}>
+            <ScoreTable
               width={50}
               height={50}
               stroke="var(--color-text)"
