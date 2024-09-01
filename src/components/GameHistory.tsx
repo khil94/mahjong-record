@@ -4,12 +4,13 @@ import { memo, useState } from "react";
 
 interface IProp {
   gameData: IGameData[];
+  target?: string;
 }
 
 const DATA_SIZE = 20;
 const PAGE_SIZE = 5;
 
-function HistoryComp({ gameData }: IProp) {
+function HistoryComp({ gameData, target }: IProp) {
   gameData.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
@@ -31,6 +32,8 @@ function HistoryComp({ gameData }: IProp) {
                     : v.rank === 4
                     ? "bg-border"
                     : "bg-bgPrimary"
+                } ${
+                  v.userName === target && "font-bold text-xl"
                 } rounded border-2 border-solid p-2 border-bgOpp break-keep flex items-center`}
               >
                 {`${v.rank}위`}
@@ -47,7 +50,7 @@ function HistoryComp({ gameData }: IProp) {
   }
 
   return (
-    <div className="w-full h-full overflow-y-scroll grid grid-cols-1 mmd:grid-cols-2 mlg:grid-cols-3 p-4 gap-4 ">
+    <div className="w-full h-full overflow-y-scroll grid grid-cols-1 mmd:grid-cols-2 mlg:grid-cols-3 gap-4 ">
       {gameData.slice(page * DATA_SIZE, (page + 1) * DATA_SIZE).map((v) => {
         return <GameHistoryData data={v} />;
       })}

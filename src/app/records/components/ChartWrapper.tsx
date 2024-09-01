@@ -1,7 +1,7 @@
 "use client";
 import MultitabLayout from "@/containers/MultitabLayout";
 import { IGameData, IUser } from "@/types/dataTypes";
-import GameHistory from "./GameHistory";
+import GameHistory from "../../../components/GameHistory";
 import RankDataChart from "./RankDataChart";
 import UserUmaChart from "./UserUmaChart";
 
