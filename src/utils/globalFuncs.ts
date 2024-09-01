@@ -41,7 +41,7 @@ export const converter = <T>() => ({
 export const getYYMMDD = (date: Date) => {
   return `${date.getFullYear() % 100}-${addZeroToNumber(
     date.getMonth()
-  )}-${addZeroToNumber(date.getDay())}`;
+  )}-${addZeroToNumber(date.getDate())}`;
 };
 
 export const addZeroToNumber = (numb: number) => {
