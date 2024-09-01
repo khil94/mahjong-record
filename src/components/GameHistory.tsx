@@ -87,7 +87,9 @@ function HistoryComp({ gameData, target, sizeType = "default" }: IProp) {
           .map((_, i) => (
             <span
               key={`page-list-${i}`}
-              className={`${PAGE_SIZE * pageSet + i === page && "font-bold"} `}
+              className={`${
+                PAGE_SIZE * pageSet + i === page && "font-bold text-xl"
+              } `}
               onClick={() => setPage(PAGE_SIZE * pageSet + i)}
             >
               {PAGE_SIZE * pageSet + i + 1}
