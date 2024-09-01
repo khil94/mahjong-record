@@ -1,4 +1,5 @@
 import { IUser } from "@/types/dataTypes";
+import Link from "next/link";
 import { memo } from "react";
 interface IProp {
   userData: IUser[];
@@ -21,7 +22,9 @@ function RankChart({ userData }: IProp) {
         } w-full `}
       >
         <td>{rank}</td>
-        <td>{userData.name}</td>
+        <td className=" hover:underline">
+          <Link href={`/user/${userData.name}`}>{userData.name}</Link>
+        </td>
         <td>{userData.currentUma}</td>
         <td>{(userData.currentUma / userData.history.length).toFixed(1)}</td>
         <td>{userData.history.length}</td>

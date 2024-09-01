@@ -1,5 +1,6 @@
 import { IGameData } from "@/types/dataTypes";
 import { getYYMMDD } from "@/utils/globalFuncs";
+import Link from "next/link";
 import { memo, useState } from "react";
 
 const DATA_SIZE = 20;
@@ -44,7 +45,9 @@ function HistoryComp({ gameData, target, sizeType = "default" }: IProp) {
               >
                 {`${v.rank}위`}
                 <div className="flex flex-col items-end w-full">
-                  <span>{`${v.userName}`}</span>
+                  <span className=" hover:underline">
+                    <Link href={`/user/${v.userName}`}>{`${v.userName}`}</Link>
+                  </span>
                   <span>{`${v.score}점`}</span>
                 </div>
               </div>
