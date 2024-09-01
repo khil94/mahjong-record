@@ -35,7 +35,9 @@ export default function RecentRank({ data, targetData }: IProp) {
         >
           <span>{getYYMMDD(new Date(data.date))}</span>
           {data.detail.map((k) => (
-            <span>{`${k.rank}위 ${k.userName} : ${k.score}`}</span>
+            <span
+              key={`desc-for--${data.id}-${k.uma}`}
+            >{`${k.rank}위 ${k.userName} : ${k.score}`}</span>
           ))}
         </div>
       )}

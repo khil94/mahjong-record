@@ -32,8 +32,9 @@ export default function History({ name }: IProp) {
       <div className="flex w-full justify-evenly pb-8 md:grid md:grid-cols-5 md:grid-rows-2">
         {gameData.slice(0, 10).map((v, i) => {
           const temp = v.detail.find((k) => k.userName === name);
-          // key={`recent-game-${i}`}
-          return <RecentRank data={v} targetData={temp} />;
+          return (
+            <RecentRank key={`recent-game-${i}`} data={v} targetData={temp} />
+          );
         })}
       </div>
     );
