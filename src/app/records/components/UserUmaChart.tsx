@@ -21,7 +21,7 @@ function UmaChart({ userData }: IProp) {
   const userUmaData = useMemo(() => makeUmaLineSeries(), [userData]);
 
   return (
-    <div className="w-full h-1/2 p-8">
+    <div className="w-full h-full p-8">
       <LineChartComp series={userUmaData} />
     </div>
   );
