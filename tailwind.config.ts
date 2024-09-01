@@ -33,9 +33,12 @@ const config: Config = {
         // => @media (min-width: 768px) { ... }
         lg: { max: "1024px" },
 
+        xlg: { max: "1440px" },
+
         msm: { min: "640px" },
         mmd: { min: "768px" },
         mlg: { min: "1024px" },
+        mxlg: { min: "1440px" },
       },
     },
   },
