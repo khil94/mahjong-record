@@ -67,9 +67,9 @@ export default function RecordPage() {
     setIdx(1);
   }
 
-  function handleSubmitData(data: IPostGameData) {
-    postUserData(data, userData);
-    dispatch(fetchUsers());
+  async function handleSubmitData(data: IPostGameData) {
+    await postUserData(data, userData);
+    await dispatch(fetchUsers());
   }
 
   return (

@@ -4,7 +4,7 @@ import { paintRank1and4 } from "@/utils/globalFuncs";
 import { useMemo } from "react";
 interface IProp {
   onCancel: () => void;
-  onSubmit: (data: IPostGameData) => void;
+  onSubmit: (data: IPostGameData) => Promise<void>;
   umaSum: number;
   data: IPostGameData;
   visible?: keyof typeof visibleProp;
@@ -81,8 +81,8 @@ export default function RecordResultContainer({
             colorType={"main"}
             customClass="text-white"
             disabled={umaSum !== 0 || userDup}
-            onClick={() => {
-              onSubmit(data);
+            onClick={async () => {
+              await onSubmit(data);
               onCancel();
             }}
             text={"제출"}

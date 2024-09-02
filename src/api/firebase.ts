@@ -41,12 +41,12 @@ export const getAllGameData = () => getDocs(convertPoint<IGameData>("games"));
 
 export const postUserData = async (data: IPostGameData, userData: IUser[]) => {
   const resp = await addDoc(collection(db, "games"), data);
-  updateDoc(doc(db, "games", resp.id), { id: resp.id });
+  await updateDoc(doc(db, "games", resp.id), { id: resp.id });
   // console.log("post resp", resp, resp.id);
-  data.detail.forEach((v) => {
+  data.detail.forEach(async (v) => {
     const target = userData.find((t) => t.name === v.userName);
     // console.log("update uma", v, target, v.userName, target.currentUma + v.uma);
-    updateDoc(doc(db, "users", target.id), {
+    await updateDoc(doc(db, "users", target.id), {
       currentUma: target.currentUma + v.uma,
       history: arrayUnion({
         date: data.date,
