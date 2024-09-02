@@ -1,5 +1,7 @@
 import { getAllGameData, getUserData } from "@/api/firebase";
+import Loading from "@/components/Loading";
 import { IGameData, IUser } from "@/types/dataTypes";
+import { Suspense } from "react";
 import ChartWrapper from "./components/ChartWrapper";
 
 export default async function Records() {
@@ -11,5 +13,9 @@ export default async function Records() {
   }));
   const userDataList: IUser[] = userDataSet.docs.map((v) => ({ ...v.data() }));
 
-  return <ChartWrapper gameData={gameDataList} userData={userDataList} />;
+  return (
+    <Suspense fallback={<Loading size={50} />}>
+      <ChartWrapper gameData={gameDataList} userData={userDataList} />
+    </Suspense>
+  );
 }
