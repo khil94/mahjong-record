@@ -65,7 +65,7 @@ function RankChart({ userData }: IProp) {
 
 const RankDataChart = memo(RankChart, (prev, next) => {
   return prev.userData.every((v, i) => {
-    if (v.currentUma !== next.userData[i].currentUma) return false;
+    if (v.history.length !== next.userData[i].history.length) return false;
   });
 });
 
