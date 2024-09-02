@@ -1,7 +1,8 @@
 import Button from "@/components/Button";
+import Loading from "@/components/Loading";
 import { IGameDetail, IPostGameData } from "@/types/dataTypes";
 import { paintRank1and4 } from "@/utils/globalFuncs";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 interface IProp {
   onCancel: () => void;
   onSubmit: (data: IPostGameData) => Promise<void>;
@@ -21,6 +22,7 @@ export default function RecordResultContainer({
   data,
   visible,
 }: IProp) {
+  const [postLoading, setPostLoading] = useState(false);
   const userDup = useMemo(() => {
     if (data?.detail) {
       const temp = new Set(data.detail.map((v) => v.userName));
@@ -70,23 +72,31 @@ export default function RecordResultContainer({
         {umaSum !== 0 && <span>우마를 확인해주세요.</span>}
         {userDup && <span>사용자를 확인해주세요.</span>}
         <div className="flex flex-row gap-8">
-          <Button
-            sizeType="sm"
-            colorType={"border"}
-            onClick={onCancel}
-            text={`뒤로가기`}
-          />
-          <Button
-            sizeType="sm"
-            colorType={"main"}
-            customClass="text-white"
-            disabled={umaSum !== 0 || userDup}
-            onClick={async () => {
-              await onSubmit(data);
-              onCancel();
-            }}
-            text={"제출"}
-          />
+          {postLoading ? (
+            <Loading size={50} />
+          ) : (
+            <>
+              <Button
+                sizeType="sm"
+                colorType={"border"}
+                onClick={onCancel}
+                text={`뒤로가기`}
+              />
+              <Button
+                sizeType="sm"
+                colorType={"main"}
+                customClass="text-white"
+                disabled={umaSum !== 0 || userDup}
+                onClick={async () => {
+                  setPostLoading(true);
+                  await onSubmit(data);
+                  onCancel();
+                  setPostLoading(false);
+                }}
+                text={"제출"}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
