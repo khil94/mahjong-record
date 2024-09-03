@@ -66,7 +66,7 @@ export default function PieChart({ name }: IProp) {
   };
 
   return (
-    <div className="md:h-80 flex w-full mlg:w-1/2 justify-center items-center">
+    <div className="md:h-80 flex md:w-full w-1/2 justify-center items-center">
       {loading ? (
         <Loading size={50} />
       ) : (

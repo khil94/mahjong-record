@@ -33,7 +33,7 @@ export default function LineChart({ name }: IProp) {
   const userUmaData = useMemo(() => makeUmaLineSeries(), [users]);
 
   return (
-    <div className="md:h-80 flex w-full mlg:w-1/2 justify-center items-center">
+    <div className="md:h-80 flex md:w-full w-1/2 justify-center items-center">
       {loading ? <Loading size={50} /> : <LineChartComp series={userUmaData} />}
     </div>
   );
