@@ -10,9 +10,9 @@ interface IProp {
 }
 
 const PositionList = {
-  left: `left-0 translate-x-0`,
-  default: `left-1/2 -translate-x-1/2`,
-  right: `right-0 -translate-x-0`,
+  left: `left-0 translate-x-0 after:left-4 after:translate-x-0 `,
+  default: `left-1/2 -translate-x-1/2 after:left-1/2 after:-translate-x-1/2 `,
+  right: `right-0 -translate-x-0 after:right-4 after:-translate-x-0 `,
 } as const;
 
 export default function RecentRank({ data, targetData }: IProp) {
@@ -23,15 +23,22 @@ export default function RecentRank({ data, targetData }: IProp) {
 
   useEffect(() => {
     const tooltip = descRef.current;
-    if (tooltip) {
+    if (!showDesc) {
+      setPosition("default");
+    } else if (tooltip) {
       const rect = tooltip.getBoundingClientRect();
       console.log(rect, rect.left, rect.right, window.innerWidth);
       if (rect.left < 0) {
         // 왼쪽 화면 밖으로 벗어날 경우
         setPosition("left");
+        console.log("left");
       } else if (rect.right > window.innerWidth) {
         // 오른쪽 화면 밖으로 벗어날 경우
         setPosition("right");
+        console.log("right");
+      } else {
+        setPosition("default");
+        console.log("default");
       }
     }
   }, [showDesc]);
@@ -54,9 +61,9 @@ export default function RecentRank({ data, targetData }: IProp) {
           rounded-md absolute p-6 top-0
           ${PositionList[position]} translate-y-[-100%]
           after:absolute after:w-3 after:h-3 after:border-t-[10px] after:border-r-[10px]
-          after:border-main after:left-1/2 after:bottom-0 
-          after:-translate-x-[-50%] after:translate-y-[0.4rem] after:rotate-[135deg]
-          overflow-hidden`}
+          after:border-main after:bottom-0 
+          after:translate-y-[0.4rem] after:rotate-[135deg]
+          `}
         >
           <span>{getYYMMDD(new Date(data.date))}</span>
           {data.detail.map((k) => (
