@@ -22,6 +22,12 @@ const userOption: ApexOptions = {
       fontSize: "24px",
     },
   },
+  legend: {
+    fontSize: "16px",
+    labels: {
+      colors: "var(--color-text)",
+    },
+  },
   plotOptions: {
     pie: {
       dataLabels: {
@@ -35,7 +41,9 @@ const userOption: ApexOptions = {
               return val + "%";
             },
           },
-          name: {},
+          name: {
+            color: "var(--color-text)",
+          },
         },
       },
     },
