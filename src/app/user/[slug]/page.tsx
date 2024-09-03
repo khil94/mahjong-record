@@ -11,7 +11,7 @@ export default function UserDetail({ params }: IProp) {
   return (
     <div className="w-full h-full gap-16 p-8 flex flex-col items-center overflow-auto scrollbar-hide">
       <h1 className="text-3xl font-bold">{`${target}의 상세 정보`}</h1>
-      <div className="flex min-h-[50%] h-1/2 md:min-h-full w-full md:h-full [&_div]:flex-grow md:flex-col">
+      <div className="flex [&_div]:flex-auto min-h-[50%] md:min-h-fit w-full md:grid md:col-span-1 md:row-span-2">
         <PieChart name={target} />
         <LineChart name={target} />
       </div>
