@@ -58,10 +58,8 @@ export default function PieChart({ name }: IProp) {
     const temp = [0, 0, 0, 0];
     if (targetData) {
       targetData.history.forEach((v) => {
-        console.log(v.rank);
         temp[v.rank - 1]++;
       });
-      console.log(temp);
     }
 
     return temp;
