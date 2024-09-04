@@ -28,7 +28,7 @@ export default function LineChart({ target, loading }: IProp) {
   const userUmaData = useMemo(() => makeUmaLineSeries(), [target]);
 
   return (
-    <div className="md:h-80 flex md:w-full w-1/2 justify-center items-center">
+    <div className="md:h-80 h-full flex md:w-full w-1/2 justify-center items-center">
       {loading ? (
         <Loading size={50} />
       ) : target.history.length === 0 ? (
