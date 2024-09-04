@@ -31,7 +31,7 @@ export default function Navbar() {
       <div
         className={`${
           isOpen ? `flex` : "hidden"
-        } absolute  top-20 right-0 p-4 w-full
+        } absolute  top-[79px] right-0 p-4 w-full
           backdrop-blur-lg
           border-solid border-b border-border`}
       >
