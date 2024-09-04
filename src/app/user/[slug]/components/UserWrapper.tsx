@@ -16,9 +16,11 @@ export default function UserWrapper({ id }: IProp) {
   const target = users.find((t) => t.id === id);
 
   return (
-    <>
+    <div className="w-full h-full gap-16 p-8 flex flex-col items-center">
       {loading || !target ? (
-        <Loading size={50} />
+        <div className="w-full h-full flex justify-center items-center">
+          <Loading size={50} />
+        </div>
       ) : (
         <>
           <h1 className="text-3xl font-bold">{`${target.name}의 상세 정보`}</h1>
@@ -35,6 +37,6 @@ export default function UserWrapper({ id }: IProp) {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }
