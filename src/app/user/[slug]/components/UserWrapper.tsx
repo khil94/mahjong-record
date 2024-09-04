@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import History from "./History";
 import LineChart from "./LineChart";
 import PieChart from "./PieChart";
+import UserRankData from "./UserRankData";
 
 interface IProp {
   id: string;
@@ -16,7 +17,7 @@ export default function UserWrapper({ id }: IProp) {
   const target = users.find((t) => t.id === id);
 
   return (
-    <div className="w-full h-full gap-16 p-8 flex flex-col items-center">
+    <div className="w-full h-full gap-16 p-4 flex flex-col items-center">
       {loading || !target ? (
         <div className="w-full h-full flex justify-center items-center">
           <Loading size={50} />
@@ -30,6 +31,9 @@ export default function UserWrapper({ id }: IProp) {
           >
             <PieChart target={target} loading={loading} />
             <LineChart target={target} loading={loading} />
+          </div>
+          <div className="w-full flex justify-center items-center">
+            <UserRankData target={target} />
           </div>
           <div className=" w-4/5 sm:w-full">
             <h2 className="text-2xl font-bold mb-8">대전 기록</h2>
