@@ -13,7 +13,7 @@ function UmaChart({ userData }: IProp) {
     const temp = userData.map((v) => ({
       name: v.name,
       data: v.history.map((t, i) => {
-        return v.history.slice(0, i + 1).reduce((p, c) => p + c.uma, 0);
+        return v.history[i].changedUma;
       }),
     }));
     return temp;
