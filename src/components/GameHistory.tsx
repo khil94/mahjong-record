@@ -42,7 +42,12 @@ function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
               >
                 <div className="flex flex-col justify-center items-start">
                   <span>{`${v.rank}위`}</span>
-                  <span>{`${v.uma > 0 ? `+${v.uma}` : v.uma}`}</span>
+                  <div className="flex flex-row md:flex-col justify-center items-start">
+                    <span>{`${v.changedUma}`}</span>
+                    <span
+                      className={`${v.uma > 0 ? "text-red" : "text-blue"}`}
+                    >{`(${v.uma > 0 ? `+${v.uma}` : v.uma})`}</span>
+                  </div>
                 </div>
                 <div className="flex flex-col items-end w-full">
                   <span className=" hover:underline">
