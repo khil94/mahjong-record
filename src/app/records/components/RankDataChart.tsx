@@ -23,7 +23,7 @@ function RankChart({ userData }: IProp) {
       >
         <td>{rank}</td>
         <td className=" hover:underline">
-          <Link href={`/user/${userData.name}`}>{userData.name}</Link>
+          <Link href={`/user/${userData.id}`}>{userData.name}</Link>
         </td>
         <td>{userData.currentUma}</td>
         <td>{(userData.currentUma / userData.history.length).toFixed(1)}</td>
