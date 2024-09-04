@@ -1,6 +1,6 @@
 "use client";
 
-import { postUserData } from "@/api/firebase";
+import { db, postUserData } from "@/api/firebase";
 import { useAppDispatch } from "@/hooks/userAppDispatch";
 import { fetchUsers } from "@/lib/features/users/usersSlice";
 import { UserAppDispatch, UserRootState } from "@/lib/store";
@@ -8,9 +8,11 @@ import {
   IGameDetail,
   IPostGameData,
   IRank,
+  IUser,
   IUserPositionData,
 } from "@/types/dataTypes";
 import { finalUmaCalc, positionCalc } from "@/utils/globalFuncs";
+import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import RecordContainer from "./components/RecordContainer";
@@ -23,6 +25,7 @@ export default function RecordPage() {
 
   const userData = useSelector((state: UserRootState) => state.users.users);
   const dispatch = useAppDispatch<UserAppDispatch>();
+  const [liveUserData, setLiveUserData] = useState<IUser[]>(userData);
 
   useEffect(() => {
     if (gameData) {
@@ -32,6 +35,22 @@ export default function RecordPage() {
       setUmaSum(newUmaSum);
     }
   }, [gameData]);
+
+  useEffect(() => {
+    // 유저 데이터 실시간 구독
+    const unsubscribeUserData = onSnapshot(
+      collection(db, "users"),
+      (snapshot) => {
+        const updatedUserData = snapshot.docs.map((doc) => doc.data() as IUser);
+        setLiveUserData(updatedUserData);
+      }
+    );
+
+    // 컴포넌트 언마운트 시 구독 해제
+    return () => {
+      unsubscribeUserData();
+    };
+  }, []);
 
   function handleSubmit(data: IUserPositionData) {
     const tempGameData = Object.entries(data)
@@ -52,7 +71,7 @@ export default function RecordPage() {
       })
       .map((v, i) => {
         const newUma = finalUmaCalc(v.uma, (i + 1) as IRank);
-        const targetUser = userData.find((k) => k.id === v.id);
+        const targetUser = liveUserData.find((k) => k.id === v.id);
         return {
           rank: i + 1,
           score: v.score,
@@ -71,7 +90,7 @@ export default function RecordPage() {
   }
 
   async function handleSubmitData(data: IPostGameData) {
-    await postUserData(data, userData);
+    await postUserData(data, liveUserData);
     await dispatch(fetchUsers());
   }
 
