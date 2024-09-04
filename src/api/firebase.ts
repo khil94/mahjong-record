@@ -42,10 +42,8 @@ export const getAllGameData = () => getDocs(convertPoint<IGameData>("games"));
 export const postUserData = async (data: IPostGameData, userData: IUser[]) => {
   const resp = await addDoc(collection(db, "games"), data);
   await updateDoc(doc(db, "games", resp.id), { id: resp.id });
-  // console.log("post resp", resp, resp.id);
   data.detail.forEach(async (v) => {
-    const target = userData.find((t) => t.name === v.userName);
-    // console.log("update uma", v, target, v.userName, target.currentUma + v.uma);
+    const target = userData.find((t) => t.id === v.userId);
     await updateDoc(doc(db, "users", target.id), {
       currentUma: target.currentUma + v.uma,
       history: arrayUnion({
@@ -54,6 +52,7 @@ export const postUserData = async (data: IPostGameData, userData: IUser[]) => {
         rank: v.rank,
         score: v.score,
         uma: v.uma,
+        changedUma: target.currentUma + v.uma,
       }),
     });
   });

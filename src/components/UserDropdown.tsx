@@ -30,7 +30,7 @@ export default function UserDropdown({
         {placeholder}
       </option>
       {userData.map((v, i) => (
-        <option key={v.id} value={v.name}>
+        <option key={v.id} value={v.id}>
           {v.name}
         </option>
       ))}

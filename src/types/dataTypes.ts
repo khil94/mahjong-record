@@ -8,10 +8,12 @@ export interface IUser {
 export type IRank = 1 | 2 | 3 | 4;
 
 export interface IUserGameData {
-  date: Date;
+  date: string;
   rank: IRank;
+  gameId: string;
   score: number;
   uma: number;
+  changedUma: number;
 }
 
 export interface IGameDetail {
@@ -19,12 +21,14 @@ export interface IGameDetail {
   score: number;
   uma: number;
   userName: string;
+  userId: string;
+  changedUma: number;
 }
 
 export interface IGameRough {
   score: number;
   uma: number;
-  userName: string;
+  id: string;
 }
 
 export interface IGameData {

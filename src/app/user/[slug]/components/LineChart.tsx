@@ -2,27 +2,22 @@
 
 import LineChartComp from "@/components/LineChartComp";
 import Loading from "@/components/Loading";
-import { UserRootState } from "@/lib/store";
+import { IUser } from "@/types/dataTypes";
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
 
 interface IProp {
-  name: string;
+  target: IUser;
+  loading: boolean;
 }
 
-export default function LineChart({ name }: IProp) {
-  const { users, loading } = useSelector((state: UserRootState) => state.users);
-  const targetData = users.find((v) => v.name === name);
-
+export default function LineChart({ target, loading }: IProp) {
   const makeUmaLineSeries = () => {
     const temp = [];
-    if (targetData) {
+    if (target) {
       temp.push({
-        name: name,
-        data: targetData.history.map((t, i) => {
-          return targetData.history
-            .slice(0, i + 1)
-            .reduce((p, c) => p + c.uma, 0);
+        name: target.name,
+        data: target.history.map((t, i) => {
+          return target.history.slice(0, i + 1).reduce((p, c) => p + c.uma, 0);
         }),
       });
     }
@@ -30,11 +25,17 @@ export default function LineChart({ name }: IProp) {
     return temp;
   };
 
-  const userUmaData = useMemo(() => makeUmaLineSeries(), [users]);
+  const userUmaData = useMemo(() => makeUmaLineSeries(), [target]);
 
   return (
     <div className="md:h-80 flex md:w-full w-1/2 justify-center items-center">
-      {loading ? <Loading size={50} /> : <LineChartComp series={userUmaData} />}
+      {loading ? (
+        <Loading size={50} />
+      ) : target.history.length === 0 ? (
+        <span>대전기록이 존재하지 않습니다.</span>
+      ) : (
+        <LineChartComp series={userUmaData} />
+      )}
     </div>
   );
 }

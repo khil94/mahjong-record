@@ -39,7 +39,7 @@ export default function RecordPage() {
         return {
           score: v.score,
           uma: v.uma,
-          userName: v.userName,
+          id: v.id,
           position: k as keyof IUserPositionData,
         };
       })
@@ -52,11 +52,14 @@ export default function RecordPage() {
       })
       .map((v, i) => {
         const newUma = finalUmaCalc(v.uma, (i + 1) as IRank);
+        const targetUser = userData.find((k) => k.id === v.id);
         return {
           rank: i + 1,
           score: v.score,
           uma: newUma,
-          userName: v.userName,
+          userName: targetUser.name,
+          userId: targetUser.id,
+          changedUma: targetUser.currentUma + v.uma,
         } as IGameDetail;
       });
     setGameData({

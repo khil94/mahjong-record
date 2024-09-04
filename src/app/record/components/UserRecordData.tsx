@@ -3,6 +3,7 @@ import { umaClac } from "@/utils/globalFuncs";
 import { useEffect, useState } from "react";
 import Input from "../../../components/Input";
 import UserDropdown from "../../../components/UserDropdown";
+
 interface IProp {
   onChange: (data: IGameRough) => void;
 }
@@ -21,7 +22,7 @@ export default function UserRecordData({ onChange }: IProp) {
       <UserDropdown
         placeholder="사용자 선택"
         onChange={(v) => {
-          setUserData({ ...userData, userName: v });
+          setUserData({ ...userData, id: v });
         }}
       />
       <Input

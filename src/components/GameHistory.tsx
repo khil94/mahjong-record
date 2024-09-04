@@ -13,11 +13,11 @@ const HistoryColList = {
 
 interface IProp {
   gameData: IGameData[];
-  target?: string;
+  targetId?: string;
   sizeType?: keyof typeof HistoryColList;
 }
 
-function HistoryComp({ gameData, target, sizeType = "default" }: IProp) {
+function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
   gameData.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
@@ -37,7 +37,7 @@ function HistoryComp({ gameData, target, sizeType = "default" }: IProp) {
                 className={`${
                   v.rank === 1 ? "bg-bgOpp font-bold" : "bg-bgPrimary"
                 } ${paintRank1and4(v.rank)} ${
-                  v.userName === target && "font-bold text-xl"
+                  v.userId === targetId && "font-bold text-xl"
                 } gap-2 rounded border-2 border-solid p-2 border-bgOpp break-keep flex items-center`}
               >
                 <div className="flex flex-col justify-center items-start">
@@ -60,9 +60,13 @@ function HistoryComp({ gameData, target, sizeType = "default" }: IProp) {
 
   return (
     <div className={`w-full h-full grid ${HistoryColList[sizeType]} gap-4 `}>
-      {gameData.slice(page * DATA_SIZE, (page + 1) * DATA_SIZE).map((v) => {
-        return <GameHistoryData key={`game-history-data-${v.id}`} data={v} />;
-      })}
+      {gameData.length === 0 ? (
+        <span>대전기록이 존재하지 않습니다.</span>
+      ) : (
+        gameData.slice(page * DATA_SIZE, (page + 1) * DATA_SIZE).map((v) => {
+          return <GameHistoryData key={`game-history-data-${v.id}`} data={v} />;
+        })
+      )}
       <div className="w-full flex justify-center col-span-full gap-4 [&_span]:cursor-pointer hover:[&_span]:font-bold">
         {pageSet >= 1 && (
           <span

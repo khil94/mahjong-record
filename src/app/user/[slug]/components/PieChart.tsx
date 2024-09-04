@@ -1,15 +1,15 @@
 "use client";
 
 import Loading from "@/components/Loading";
-import { UserRootState } from "@/lib/store";
+import { IUser } from "@/types/dataTypes";
 import { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
-import { useSelector } from "react-redux";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 interface IProp {
-  name: string;
+  target: IUser;
+  loading: boolean;
 }
 
 const userOption: ApexOptions = {
@@ -50,14 +50,11 @@ const userOption: ApexOptions = {
   },
 };
 
-export default function PieChart({ name }: IProp) {
-  const { users, loading } = useSelector((state: UserRootState) => state.users);
-  const targetData = users.find((v) => v.name === name);
-
+export default function PieChart({ target, loading }: IProp) {
   const mkaeRankSeries = () => {
     const temp = [0, 0, 0, 0];
-    if (targetData) {
-      targetData.history.forEach((v) => {
+    if (target) {
+      target.history.forEach((v) => {
         temp[v.rank - 1]++;
       });
     }
@@ -69,6 +66,8 @@ export default function PieChart({ name }: IProp) {
     <div className="md:h-80 flex md:w-full w-1/2 justify-center items-center">
       {loading ? (
         <Loading size={50} />
+      ) : target.history.length === 0 ? (
+        <span>대전기록이 존재하지 않습니다.</span>
       ) : (
         <Chart
           options={userOption}
