@@ -38,9 +38,12 @@ function HistoryComp({ gameData, target, sizeType = "default" }: IProp) {
                   v.rank === 1 ? "bg-bgOpp font-bold" : "bg-bgPrimary"
                 } ${paintRank1and4(v.rank)} ${
                   v.userName === target && "font-bold text-xl"
-                } rounded border-2 border-solid p-2 border-bgOpp break-keep flex items-center`}
+                } gap-2 rounded border-2 border-solid p-2 border-bgOpp break-keep flex items-center`}
               >
-                {`${v.rank}위`}
+                <div className="flex flex-col justify-center items-start">
+                  <span>{`${v.rank}위`}</span>
+                  <span>{`${v.uma > 0 ? `+${v.uma}` : v.uma}`}</span>
+                </div>
                 <div className="flex flex-col items-end w-full">
                   <span className=" hover:underline">
                     <Link href={`/user/${v.userName}`}>{`${v.userName}`}</Link>
