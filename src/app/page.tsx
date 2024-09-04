@@ -13,7 +13,7 @@ export default function Home() {
   const { loading } = useSelector((state: UserRootState) => state.users);
 
   return (
-    <main className="flex flex-col items-start gap-16 w-full p-8">
+    <main className="flex flex-col items-start gap-16 w-full p-8 sm:pt-24">
       <h1 className=" font-bold text-5xl sm:text-2xl">
         누에단 마작 기록 사이트
       </h1>

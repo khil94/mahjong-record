@@ -10,10 +10,10 @@ export default function GlobalLayout({
   return (
     <>
       <Fetcher />
-      <div className={`h-full md:h-lvh bg-bgPrimary text-text`}>
+      <div className={`h-full bg-bgPrimary text-text`}>
         <Navbar />
         <Sidebar />
-        <div className="h-full flex justify-center items-center pl-24 sm:pl-0 sm:pt-24 ">
+        <div className="h-full flex justify-center items-center pl-24 sm:pl-0 ">
           {children}
         </div>
       </div>

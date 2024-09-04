@@ -10,7 +10,7 @@ export default function MultitabLayout({ tabList, tabCompList }: IProp) {
   const [idx, setIdx] = useState(0);
 
   return (
-    <div className="w-4/5 sm:w-full sm:h-full h-3/4 flex flex-col justify-center">
+    <div className="w-4/5 sm:w-full sm:h-full sm:pt-24 h-3/4 flex flex-col justify-center">
       <div className="flex border-solid border-b-[1px]">
         {tabList.map((v, i) => {
           return (

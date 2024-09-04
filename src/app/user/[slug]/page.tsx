@@ -9,8 +9,8 @@ export default function UserDetail({ params }: IProp) {
 
   return (
     <div
-      className="w-full h-full gap-16 p-8 
-                flex flex-col items-center 
+      className="w-full h-full gap-16
+                flex flex-col items-center sm:pt-24
                 overflow-auto scrollbar-hide"
     >
       <UserWrapper id={targetId} />
