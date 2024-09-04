@@ -56,9 +56,7 @@ function HistoryComp({ gameData, target, sizeType = "default" }: IProp) {
   }
 
   return (
-    <div
-      className={`w-full h-full overflow-y-scroll grid ${HistoryColList[sizeType]} gap-4 `}
-    >
+    <div className={`w-full h-full grid ${HistoryColList[sizeType]} gap-4 `}>
       {gameData.slice(page * DATA_SIZE, (page + 1) * DATA_SIZE).map((v) => {
         return <GameHistoryData key={`game-history-data-${v.id}`} data={v} />;
       })}
