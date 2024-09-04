@@ -26,9 +26,9 @@ export default function MultitabLayout({ tabList, tabCompList }: IProp) {
           );
         })}
       </div>
-      <div className="flex justify-center pt-4 pb-4 h-full overflow-auto ">
-        {tabCompList[idx]}
-      </div>
+      {/* <div className="flex justify-center pt-4 pb-4 h-full overflow-auto lg:scrollbar-hide"> */}
+      {tabCompList[idx]}
+      {/* </div> */}
     </div>
   );
 }

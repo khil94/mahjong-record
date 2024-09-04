@@ -1,7 +1,7 @@
 import { IGameData } from "@/types/dataTypes";
 import { getYYMMDD, paintRank1and4 } from "@/utils/globalFuncs";
 import Link from "next/link";
-import { memo, useState } from "react";
+import { memo, useRef, useState } from "react";
 
 const DATA_SIZE = 30;
 const PAGE_SIZE = 5;
@@ -21,6 +21,8 @@ function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
   gameData.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
+  const wrapperRef = useRef(null);
+
   const [page, setPage] = useState(0);
   const [pageSet, setPageSet] = useState(0);
 
@@ -43,7 +45,7 @@ function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
                 <div className="flex flex-col justify-center items-start">
                   <span className=" hover:underline">
                     <Link
-                      href={`/user/${v.userName}`}
+                      href={`/user/${v.userId}`}
                     >{`${v.userName}(${v.rank}위)`}</Link>
                   </span>
                   <span>{`${v.score}점`}</span>
@@ -63,6 +65,9 @@ function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
   }
 
   const pageHandler = (type: "left" | "default" | "right", to: number = 0) => {
+    if (wrapperRef.current) {
+      wrapperRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    }
     switch (type) {
       case "left":
         if (page > 0) {
@@ -83,54 +88,61 @@ function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
   };
 
   return (
-    <div className={`w-full h-full grid ${HistoryColList[sizeType]} gap-4 `}>
-      {gameData.length === 0 ? (
-        <span>대전기록이 존재하지 않습니다.</span>
-      ) : (
-        gameData.slice(page * DATA_SIZE, (page + 1) * DATA_SIZE).map((v) => {
-          return <GameHistoryData key={`game-history-data-${v.id}`} data={v} />;
-        })
-      )}
-      <div className="w-full flex justify-center col-span-full gap-4 [&_span]:cursor-pointer hover:[&_span]:font-bold">
-        {pageSet >= 1 && (
-          <span
-            onClick={() => {
-              pageHandler("left");
-            }}
-          >
-            {"<"}
-          </span>
+    <div
+      ref={wrapperRef}
+      className="flex justify-center pt-4 pb-4 h-full overflow-auto lg:scrollbar-hide"
+    >
+      <div className={`w-full h-full grid ${HistoryColList[sizeType]} gap-4 `}>
+        {gameData.length === 0 ? (
+          <span>대전기록이 존재하지 않습니다.</span>
+        ) : (
+          gameData.slice(page * DATA_SIZE, (page + 1) * DATA_SIZE).map((v) => {
+            return (
+              <GameHistoryData key={`game-history-data-${v.id}`} data={v} />
+            );
+          })
         )}
-        {new Array(
-          Math.min(
-            Math.ceil(
-              (gameData.length - PAGE_SIZE * pageSet * DATA_SIZE) / DATA_SIZE
-            ),
-            5
-          )
-        )
-          .fill(0)
-          .map((_, i) => (
+        <div className="w-full flex justify-center col-span-full gap-4 [&_span]:cursor-pointer hover:[&_span]:font-bold">
+          {pageSet >= 1 && (
             <span
-              key={`page-list-${i}`}
-              className={`${
-                PAGE_SIZE * pageSet + i === page && "font-bold text-xl"
-              } `}
-              onClick={() => pageHandler("default", i)}
+              onClick={() => {
+                pageHandler("left");
+              }}
             >
-              {PAGE_SIZE * pageSet + i + 1}
+              {"<"}
             </span>
-          ))}
-        {(pageSet + 1) * PAGE_SIZE <
-          Math.floor(gameData.length / DATA_SIZE) && (
-          <span
-            onClick={() => {
-              pageHandler("right");
-            }}
-          >
-            {">"}
-          </span>
-        )}
+          )}
+          {new Array(
+            Math.min(
+              Math.ceil(
+                (gameData.length - PAGE_SIZE * pageSet * DATA_SIZE) / DATA_SIZE
+              ),
+              5
+            )
+          )
+            .fill(0)
+            .map((_, i) => (
+              <span
+                key={`page-list-${i}`}
+                className={`${
+                  PAGE_SIZE * pageSet + i === page && "font-bold text-xl"
+                } `}
+                onClick={() => pageHandler("default", i)}
+              >
+                {PAGE_SIZE * pageSet + i + 1}
+              </span>
+            ))}
+          {(pageSet + 1) * PAGE_SIZE <
+            Math.floor(gameData.length / DATA_SIZE) && (
+            <span
+              onClick={() => {
+                pageHandler("right");
+              }}
+            >
+              {">"}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );
