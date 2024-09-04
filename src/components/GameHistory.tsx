@@ -7,7 +7,7 @@ const DATA_SIZE = 30;
 const PAGE_SIZE = 5;
 
 const HistoryColList = {
-  default: "grid-cols-1 mmd:grid-cols-2 mlg:grid-cols-3",
+  default: "grid-cols-1 mlg:grid-cols-2 mxlg:grid-cols-3",
   md: "grid-cols-1 mlg:grid-cols-2 mxlg:grid-cols-3",
 } as const;
 
@@ -41,19 +41,18 @@ function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
                 } gap-2 rounded border-2 border-solid p-2 border-bgOpp break-keep flex items-center`}
               >
                 <div className="flex flex-col justify-center items-start">
-                  <span>{`${v.rank}위`}</span>
-                  <div className="flex flex-row md:flex-col justify-center items-start">
+                  <span className=" hover:underline">
+                    <Link
+                      href={`/user/${v.userName}`}
+                    >{`${v.userName}(${v.rank}위)`}</Link>
+                  </span>
+                  <span>{`${v.score}점`}</span>
+                  <div className="flex flex-row justify-center items-start">
                     <span>{`${v.changedUma}`}</span>
                     <span
                       className={`${v.uma > 0 ? "text-red" : "text-blue"}`}
                     >{`(${v.uma > 0 ? `+${v.uma}` : v.uma})`}</span>
                   </div>
-                </div>
-                <div className="flex flex-col items-end w-full">
-                  <span className=" hover:underline">
-                    <Link href={`/user/${v.userName}`}>{`${v.userName}`}</Link>
-                  </span>
-                  <span>{`${v.score}점`}</span>
                 </div>
               </div>
             );
