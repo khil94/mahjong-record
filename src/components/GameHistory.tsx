@@ -62,6 +62,26 @@ function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
     );
   }
 
+  const pageHandler = (type: "left" | "default" | "right", to: number = 0) => {
+    switch (type) {
+      case "left":
+        if (page > 0) {
+          setPage((pageSet - 1) * PAGE_SIZE);
+          setPageSet(pageSet - 1);
+        }
+        break;
+      case "right":
+        if (page < Math.floor(gameData.length / DATA_SIZE)) {
+          setPage((pageSet + 1) * PAGE_SIZE);
+          setPageSet(pageSet + 1);
+        }
+        break;
+      case "default":
+        setPage(PAGE_SIZE * pageSet + to);
+        break;
+    }
+  };
+
   return (
     <div className={`w-full h-full grid ${HistoryColList[sizeType]} gap-4 `}>
       {gameData.length === 0 ? (
@@ -75,10 +95,7 @@ function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
         {pageSet >= 1 && (
           <span
             onClick={() => {
-              if (page > 0) {
-                setPage((pageSet - 1) * PAGE_SIZE);
-                setPageSet(pageSet - 1);
-              }
+              pageHandler("left");
             }}
           >
             {"<"}
@@ -99,7 +116,7 @@ function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
               className={`${
                 PAGE_SIZE * pageSet + i === page && "font-bold text-xl"
               } `}
-              onClick={() => setPage(PAGE_SIZE * pageSet + i)}
+              onClick={() => pageHandler("default", i)}
             >
               {PAGE_SIZE * pageSet + i + 1}
             </span>
@@ -108,10 +125,7 @@ function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
           Math.floor(gameData.length / DATA_SIZE) && (
           <span
             onClick={() => {
-              if (page < Math.floor(gameData.length / DATA_SIZE)) {
-                setPage((pageSet + 1) * PAGE_SIZE);
-                setPageSet(pageSet + 1);
-              }
+              pageHandler("right");
             }}
           >
             {">"}
