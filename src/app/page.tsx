@@ -19,7 +19,7 @@ export default function Home() {
       </h1>
       <div className="flex flex-row justify-center items-center w-1/2 md:w-full gap-4">
         {loading ? (
-          <Loading size={24} />
+          <Loading size={40} />
         ) : (
           <>
             <UserDropdown
