@@ -2,14 +2,14 @@
 
 import LineChartComp from "@/components/LineChartComp";
 import { IUser } from "@/types/dataTypes";
-import { memo, useMemo } from "react";
+import { memo, useCallback, useMemo } from "react";
 
 interface IProp {
   userData: IUser[];
 }
 
 function UmaChart({ userData }: IProp) {
-  const makeUmaLineSeries = () => {
+  const makeUmaLineSeries = useCallback(() => {
     const temp = userData.map((v) => ({
       name: v.name,
       data: v.history.map((t, i) => {
@@ -17,12 +17,13 @@ function UmaChart({ userData }: IProp) {
       }),
     }));
     return temp;
-  };
-  const userUmaData = useMemo(() => makeUmaLineSeries(), [userData]);
+  }, [userData]);
+
+  const umaLineSeries = useMemo(() => makeUmaLineSeries(), [makeUmaLineSeries]);
 
   return (
     <div className="w-full h-full p-8">
-      <LineChartComp series={userUmaData} />
+      <LineChartComp series={umaLineSeries} />
     </div>
   );
 }
