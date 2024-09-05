@@ -3,7 +3,6 @@
 import LineChartComp from "@/components/LineChartComp";
 import Loading from "@/components/Loading";
 import { IUser } from "@/types/dataTypes";
-import { useMemo } from "react";
 
 interface IProp {
   target: IUser;
@@ -25,8 +24,6 @@ export default function LineChart({ target, loading }: IProp) {
     return temp;
   };
 
-  const userUmaData = useMemo(() => makeUmaLineSeries(), [target]);
-
   return (
     <div className="md:h-80 h-full flex md:w-full w-1/2 justify-center items-center">
       {loading ? (
@@ -34,7 +31,7 @@ export default function LineChart({ target, loading }: IProp) {
       ) : target.history.length === 0 ? (
         <span>대전기록이 존재하지 않습니다.</span>
       ) : (
-        <LineChartComp series={userUmaData} />
+        <LineChartComp series={makeUmaLineSeries()} />
       )}
     </div>
   );
