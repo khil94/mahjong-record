@@ -1,5 +1,5 @@
 import { IUser } from "@/types/dataTypes";
-import { paintRank } from "@/utils/globalFuncs";
+import { paintRank, paintRankBg } from "@/utils/globalFuncs";
 
 interface IProp {
   target: IUser;
@@ -39,11 +39,10 @@ export default function UserRankData({ target }: IProp) {
   }) => {
     return (
       <div
-        className={` border-2 border-solid pt-2 pb-2 break-keep text-center ${paintRank(
-          rank
-        )}`}
+        className={`font-bold border-2 border-solid pt-2 pb-2 break-keep text-center 
+        !text-text ${paintRankBg(rank)} ${paintRank(rank)} `}
       >
-        <div className="font-bold">{`${rank}위`}</div>
+        <div>{`${rank}위`}</div>
         <div>{`${rankData.total}회 (${(
           (rankData.total * 100) /
           target.history.length

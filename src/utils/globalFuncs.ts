@@ -63,6 +63,21 @@ export const paintRank = (rank: number) => {
   }
 };
 
+export const paintRankBg = (rank: number) => {
+  switch (rank) {
+    case 1:
+      return "bg-blue";
+    case 2:
+      return "bg-green ";
+    case 3:
+      return "bg-yellow ";
+    case 4:
+      return "bg-red ";
+    default:
+      return "";
+  }
+};
+
 export const paintRank1and4 = (rank: number) => {
   switch (rank) {
     case 1:
