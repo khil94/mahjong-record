@@ -28,7 +28,7 @@ export default function History({ id }: IProp) {
       setLoading(false);
     };
     getGameData();
-  }, []);
+  }, [id]);
 
   const RecentGameRank = () => {
     return (
