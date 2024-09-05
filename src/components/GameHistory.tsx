@@ -18,9 +18,6 @@ interface IProp {
 }
 
 function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
-  gameData.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
   const wrapperRef = useRef(null);
 
   const [page, setPage] = useState(0);
@@ -36,10 +33,12 @@ function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
             return (
               <div
                 key={`game-history-${data.id}-${v.userName}-${date}`}
-                className={`${
-                  v.rank === 1 ? "bg-bgOpp font-bold" : "bg-bgPrimary"
-                } ${paintRank1and4(v.rank)} ${
-                  v.userId === targetId && "font-bold text-xl"
+                className={` ${
+                  targetId === undefined && paintRank1and4(v.rank)
+                } ${
+                  v.userId === targetId
+                    ? "font-bold text-xl bg-bgOpp text-border"
+                    : ""
                 } gap-2 rounded border-2 border-solid p-2 border-bgOpp break-keep flex items-center`}
               >
                 <div className="flex flex-col justify-center items-start">
@@ -49,11 +48,13 @@ function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
                     >{`${v.userName}(${v.rank}위)`}</Link>
                   </span>
                   <span>{`${v.score}점`}</span>
-                  <div className="flex flex-row justify-center items-start">
-                    <span>{`${v.changedUma}`}</span>
-                    <span
-                      className={`${v.uma > 0 ? "text-red" : "text-blue"}`}
-                    >{`(${v.uma > 0 ? `+${v.uma}` : v.uma})`}</span>
+                  <div className="flex flex-row justify-center items-start whitespace-nowrap">
+                    <span>
+                      {`${v.changedUma - v.uma}->${v.changedUma}`}
+                      <span
+                        className={`${v.uma > 0 ? "text-red" : "text-blue"}`}
+                      >{`(${v.uma > 0 ? `+${v.uma}` : v.uma})`}</span>
+                    </span>
                   </div>
                 </div>
               </div>
