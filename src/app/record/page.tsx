@@ -78,7 +78,7 @@ export default function RecordPage() {
           uma: newUma,
           userName: targetUser.name,
           userId: targetUser.id,
-          changedUma: targetUser.currentUma + v.uma,
+          changedUma: targetUser.currentUma + newUma,
         } as IGameDetail;
       });
     setGameData({
@@ -95,7 +95,7 @@ export default function RecordPage() {
   }
 
   return (
-    <div className="w-full flex flex-col justify-center items-center p-4 gap-4">
+    <div className="w-full flex flex-col justify-center items-center p-4 gap-4 md:pt-24">
       <h1 className=" font-bold text-5xl sm:text-2xl">마작 결과 기록</h1>
       <RecordContainer
         visible={idx === 0 ? "visible" : "hidden"}
