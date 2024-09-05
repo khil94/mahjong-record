@@ -10,6 +10,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "누에단 마작 기록 웹",
   description: "누에단 녀석들 마작 기록용 웹사이트",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
