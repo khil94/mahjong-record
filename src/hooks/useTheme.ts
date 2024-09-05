@@ -2,6 +2,7 @@
 import { changeTheme } from "@/lib/features/theme/themeSlice";
 import { RootState } from "@/lib/store";
 import { ITheme } from "@/types/dataTypes";
+import { getCookie, setCookie } from "cookies-next";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,16 +13,23 @@ const useTheme = () => {
     (val: ITheme) => {
       document.documentElement.setAttribute("data-theme", val);
       dispatch(changeTheme(val));
+      setCookie("theme", val);
     },
     [dispatch]
   );
 
   const initiateState = useCallback(() => {
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-      .matches
-      ? "dark"
-      : ("light" as ITheme);
-    setTheme(systemTheme);
+    const cookieTheme = getCookie("theme");
+
+    if (cookieTheme) {
+      setTheme(cookieTheme as ITheme);
+    } else {
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
+        ? "dark"
+        : ("light" as ITheme);
+      setTheme(systemTheme);
+    }
   }, [setTheme]);
 
   const toggleTheme = useCallback(() => {

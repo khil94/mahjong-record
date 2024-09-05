@@ -1,6 +1,7 @@
 import GlobalLayout from "@/containers/GlobalLayout";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { cookies } from "next/headers";
 import UserStoreProvider from "./UserStoreProvider";
 import "./globals.css";
 
@@ -16,8 +17,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  function initTheme() {
+    const cookieTheme = cookies().get("theme");
+    if (cookieTheme) {
+      return cookieTheme.value;
+    } else {
+      return "";
+    }
+  }
+  const theme = initTheme();
+
   return (
-    <html lang="ko">
+    <html data-theme={theme} lang="ko">
       <body className={inter.className}>
         <UserStoreProvider>
           <GlobalLayout>{children}</GlobalLayout>
