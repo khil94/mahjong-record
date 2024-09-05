@@ -9,7 +9,7 @@ export default function UserDetail({ params }: IProp) {
 
   return (
     <div
-      className="w-full h-full gap-16
+      className="w-full h-full gap-16 bg-bgPrimary
                 flex flex-col items-center sm:pt-24
                 overflow-auto scrollbar-hide"
     >
