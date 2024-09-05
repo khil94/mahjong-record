@@ -20,7 +20,7 @@ export default function UserDropdown({
     <select
       {...rest}
       required
-      className={`${customClass} bg-bgSecondary p-2 pr-6 rounded-md invalid:text-gray-300`}
+      className={`${customClass} border-4 border-solid border-border bg-bgPrimary p-2 pr-6 rounded-md `}
       onChange={(e) => {
         onChange(e.target.value);
       }}

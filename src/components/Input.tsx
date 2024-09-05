@@ -13,7 +13,7 @@ export default function Input({ onChange, ...rest }: IProp) {
 
   return (
     <input
-      className=" bg-bgSecondary rounded-md p-2 w-full"
+      className=" bg-bgPrimary border-4 border-solid border-border text-text rounded-md p-2 w-full"
       value={val || ""}
       onChange={(e) => {
         setVal(e.target.value);
