@@ -18,7 +18,7 @@ const rootData: IRankData = {
 };
 
 export default function UserRankData({ target }: IProp) {
-  const getRankData = () => {
+  const getRankData: () => IRankData[] = () => {
     const tempObj = Array(4).fill(rootData);
     target.history.forEach((v) => {
       tempObj[v.rank - 1] = {
@@ -62,7 +62,13 @@ export default function UserRankData({ target }: IProp) {
     <div className="mlg:w-1/2 w-full">
       <div className=" grid grid-cols-2 grid-rows-2">
         {getRankData().map((v, i) => {
-          return <UserRankDataComp rank={i + 1} rankData={v} />;
+          return (
+            <UserRankDataComp
+              key={`rank-data-${i}`}
+              rank={i + 1}
+              rankData={v}
+            />
+          );
         })}
       </div>
       <div className="border-2 border-solid p-4 text-center">
