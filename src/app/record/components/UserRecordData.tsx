@@ -28,7 +28,7 @@ export default function UserRecordData({ onChange }: IProp) {
       <Input
         onChange={(e) => {
           if (!isNaN(e)) {
-            setUserData({ ...userData, score: e * 100 });
+            setUserData({ ...userData, score: e });
           }
         }}
         required
