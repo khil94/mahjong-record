@@ -51,7 +51,7 @@ export default function Sidebar() {
             fill="var(--color-text)"
           />
         </Link>
-        <div onClick={() => toggleTheme()}>
+        <div className="hover:cursor-pointer" onClick={() => toggleTheme()}>
           {theme === "light" ? (
             <Dark
               width={50}
