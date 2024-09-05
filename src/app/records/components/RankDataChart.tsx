@@ -18,8 +18,8 @@ function RankChart({ userData }: IProp) {
     return (
       <tr
         className={`${
-          rank === 1 ? "font-bold bg-main text-white" : "bg-border"
-        } w-full `}
+          rank === 1 ? "font-bold bg-main text-white" : "bg-bgPrimary"
+        } w-full border-b-2 border-solid border-border`}
       >
         <td>{rank}</td>
         <td className=" hover:underline">
@@ -39,7 +39,7 @@ function RankChart({ userData }: IProp) {
   return (
     <div className="w-full h-full overflow-x-scroll scrollbar-hide">
       <table className="w-full h-full [&_td]:align-middle text-center min-w-[40%] table-auto whitespace-nowrap">
-        <thead className="bg-bgSecondary">
+        <thead className="bg-bgPrimary">
           <tr className="[&_th]:p-2 ">
             <th>순위</th>
             <th>이름</th>
