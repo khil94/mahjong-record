@@ -3,7 +3,7 @@
 import { db, postUserData } from "@/api/firebase";
 import { useAppDispatch } from "@/hooks/userAppDispatch";
 import { fetchUsers } from "@/lib/features/users/usersSlice";
-import { UserAppDispatch, UserRootState } from "@/lib/store";
+import { AppDispatch, RootState } from "@/lib/store";
 import {
   IGameDetail,
   IPostGameData,
@@ -23,8 +23,8 @@ export default function RecordPage() {
   const [idx, setIdx] = useState(0);
   const [umaSum, setUmaSum] = useState(0);
 
-  const userData = useSelector((state: UserRootState) => state.users.users);
-  const dispatch = useAppDispatch<UserAppDispatch>();
+  const userData = useSelector((state: RootState) => state.users.users);
+  const dispatch = useAppDispatch<AppDispatch>();
   const [liveUserData, setLiveUserData] = useState<IUser[]>(userData);
 
   useEffect(() => {

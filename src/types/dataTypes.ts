@@ -48,3 +48,5 @@ export interface IUserPositionData {
   west: IGameRough;
   south: IGameRough;
 }
+
+export type ITheme = "light" | "dark";

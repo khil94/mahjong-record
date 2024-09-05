@@ -3,14 +3,14 @@
 import Button from "@/components/Button";
 import Loading from "@/components/Loading";
 import UserDropdown from "@/components/UserDropdown";
-import { UserRootState } from "@/lib/store";
+import { RootState } from "@/lib/store";
 import Link from "next/link";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function Home() {
   const [searchVal, setSearchVal] = useState("");
-  const { loading } = useSelector((state: UserRootState) => state.users);
+  const { loading } = useSelector((state: RootState) => state.users);
 
   return (
     <main className="flex flex-col items-start gap-16 w-full p-8 sm:pt-24">

@@ -1,16 +1,23 @@
 "use client";
 
 import Link from "next/link";
+import Dark from "../../public/Dark.svg";
+import Light from "../../public/Light.svg";
 import BurgerBar from "../../public/burger-bar.svg";
 import Home from "../../public/home.svg";
 import Record from "../../public/record.svg";
 import Records from "../../public/records.svg";
 import ScoreTable from "../../public/score-table.svg";
 
+import useTheme from "@/hooks/useTheme";
+import { RootState } from "@/lib/store";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { toggleTheme } = useTheme();
+  const { theme } = useSelector((v: RootState) => v.theme);
 
   return (
     <div
@@ -66,6 +73,23 @@ export default function Navbar() {
               fill="var(--color-text)"
             />
           </Link>
+          <div onClick={() => toggleTheme()}>
+            {theme === "light" ? (
+              <Dark
+                width={50}
+                height={50}
+                stroke="var(--color-text)"
+                fill="var(--color-background-primary)"
+              />
+            ) : (
+              <Light
+                width={50}
+                height={50}
+                stroke="var(--color-text)"
+                fill="var(--color-text)"
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>

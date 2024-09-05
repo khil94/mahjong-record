@@ -1,5 +1,5 @@
 "use client";
-import { UserRootState } from "@/lib/store";
+import { RootState } from "@/lib/store";
 import { useSelector } from "react-redux";
 
 interface IProp extends React.SelectHTMLAttributes<HTMLSelectElement> {
@@ -14,7 +14,7 @@ export default function UserDropdown({
   customClass,
   ...rest
 }: IProp) {
-  const userData = useSelector((state: UserRootState) => state.users.users);
+  const userData = useSelector((state: RootState) => state.users.users);
 
   return (
     <select

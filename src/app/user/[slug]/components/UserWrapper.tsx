@@ -1,7 +1,7 @@
 "use client";
 
 import Loading from "@/components/Loading";
-import { UserRootState } from "@/lib/store";
+import { RootState } from "@/lib/store";
 import { useSelector } from "react-redux";
 import History from "./History";
 import LineChart from "./LineChart";
@@ -13,7 +13,7 @@ interface IProp {
 }
 
 export default function UserWrapper({ id }: IProp) {
-  const { users, loading } = useSelector((state: UserRootState) => state.users);
+  const { users, loading } = useSelector((state: RootState) => state.users);
   const target = users.find((t) => t.id === id);
 
   return (
