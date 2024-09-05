@@ -13,7 +13,7 @@ export default function GlobalLayout({
       <div className={`h-full bg-bgPrimary text-text`}>
         <Navbar />
         <Sidebar />
-        <div className="h-full flex justify-center items-center pl-24 sm:pl-0 ">
+        <div className="[&>div]:bg-bgPrimary h-full flex justify-center items-center pl-24 sm:pl-0 ">
           {children}
         </div>
       </div>
