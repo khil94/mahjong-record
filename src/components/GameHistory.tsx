@@ -1,5 +1,6 @@
+import { RankPainter } from "@/constants/styles";
 import { IGameData } from "@/types/dataTypes";
-import { getYYMMDD, paintRank1and4 } from "@/utils/globalFuncs";
+import { getYYMMDD } from "@/utils/globalFuncs";
 import Link from "next/link";
 import { memo, useRef, useState } from "react";
 
@@ -34,7 +35,12 @@ function HistoryComp({ gameData, targetId, sizeType = "default" }: IProp) {
               <div
                 key={`game-history-${data.id}-${v.userName}-${date}`}
                 className={` ${
-                  targetId === undefined && paintRank1and4(v.rank)
+                  targetId === undefined &&
+                  v.rank !== 2 &&
+                  v.rank !== 3 &&
+                  `${RankPainter.textColor[v.rank]} ${
+                    RankPainter.borderColor[v.rank]
+                  }`
                 } ${
                   v.userId === targetId
                     ? "font-bold text-xl bg-bgOpp text-border"

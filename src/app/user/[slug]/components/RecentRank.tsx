@@ -1,7 +1,8 @@
 "use client";
 
+import { RankPainter } from "@/constants/styles";
 import { IGameData, IGameDetail } from "@/types/dataTypes";
-import { getYYMMDD, paintRank } from "@/utils/globalFuncs";
+import { getYYMMDD } from "@/utils/globalFuncs";
 import { useEffect, useRef, useState } from "react";
 
 interface IProp {
@@ -27,18 +28,14 @@ export default function RecentRank({ data, targetData }: IProp) {
       setPosition("default");
     } else if (tooltip) {
       const rect = tooltip.getBoundingClientRect();
-      console.log(rect, rect.left, rect.right, window.innerWidth);
       if (rect.left < 0) {
         // 왼쪽 화면 밖으로 벗어날 경우
         setPosition("left");
-        console.log("left");
       } else if (rect.right > window.innerWidth) {
         // 오른쪽 화면 밖으로 벗어날 경우
         setPosition("right");
-        console.log("right");
       } else {
         setPosition("default");
-        console.log("default");
       }
     }
   }, [showDesc]);
@@ -48,9 +45,9 @@ export default function RecentRank({ data, targetData }: IProp) {
       <div
         onMouseEnter={() => setShowDesc(true)}
         onMouseLeave={() => setShowDesc(false)}
-        className={` text-lg ${paintRank(
-          targetData.rank
-        )} p-4 text-center rounded-xl border-solid border-2`}
+        className={` text-lg ${RankPainter.textColor[targetData.rank]} ${
+          RankPainter.borderColor[targetData.rank]
+        } p-4 text-center rounded-xl border-solid border-2`}
       >
         {targetData.rank}
       </div>
