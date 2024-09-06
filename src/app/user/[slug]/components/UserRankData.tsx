@@ -68,7 +68,7 @@ export default function UserRankData({ target }: IProp) {
     return (
       <div
         className={`font-bold border-2 border-solid pt-2 pb-2 break-keep text-center 
-        !text-text ${RankPainter.borderColor[rank]} ${RankPainter.textColor[rank]} ${RankPainter.borderColor[rank]}`}
+        !text-text ${RankPainter.borderColor[rank]} ${RankPainter.bgColor[rank]}`}
       >
         <div>{`${rank}위`}</div>
         <div>{`${rankData.total}회 (${(
