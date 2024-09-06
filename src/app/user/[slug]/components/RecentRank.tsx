@@ -47,7 +47,7 @@ export default function RecentRank({ data, targetData }: IProp) {
         onMouseLeave={() => setShowDesc(false)}
         className={` text-lg ${RankPainter.textColor[targetData.rank]} ${
           RankPainter.borderColor[targetData.rank]
-        } p-4 text-center rounded-xl border-solid border-2`}
+        } p-4 mmd:pl-6 mmd:pr-6 text-center rounded-xl border-solid border-2`}
       >
         {targetData.rank}
       </div>
