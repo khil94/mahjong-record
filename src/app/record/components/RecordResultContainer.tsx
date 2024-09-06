@@ -1,7 +1,7 @@
 import Button from "@/components/Button";
 import Loading from "@/components/Loading";
+import { RankPainter } from "@/constants/styles";
 import { IGameDetail, IPostGameData } from "@/types/dataTypes";
-import { paintRank1and4 } from "@/utils/globalFuncs";
 import { useMemo, useState } from "react";
 interface IProp {
   onCancel: () => void;
@@ -34,9 +34,13 @@ export default function RecordResultContainer({
   function UserDataComp({ userData }: { userData: IGameDetail }) {
     return (
       <tr
-        className={`${userData.rank === 1 && "font-bold"} ${paintRank1and4(
-          userData.rank
-        )} w-full bg-border`}
+        className={`${userData.rank === 1 && "font-bold"} ${
+          userData.rank !== 2 &&
+          userData.rank !== 3 &&
+          `${RankPainter.textColor[userData.rank]} ${
+            RankPainter.borderColor[userData.rank]
+          }`
+        } w-full bg-border`}
       >
         <td>{userData.rank}</td>
         <td>{userData.userName}</td>
