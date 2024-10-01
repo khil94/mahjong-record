@@ -28,7 +28,7 @@ export default function UserRankData({ target }: IProp) {
       tempObj[v.rank - 1] = {
         total: tempObj[v.rank - 1].total + 1,
         totalUma: tempObj[v.rank - 1].totalUma + v.uma,
-        totalScore: tempObj[v.rank - 1].totalScore + v.score,
+        totalScore: tempObj[v.rank - 1].totalScore + Number(v.score),
       };
     });
     return tempObj;
