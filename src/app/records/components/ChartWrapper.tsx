@@ -27,7 +27,11 @@ export default function ChartWrapper({ gameData, userData }: IProp) {
         const updatedGameData = snapshot.docs.map(
           (doc) => doc.data() as IGameData
         );
-        setLiveGameData(updatedGameData);
+        setLiveGameData(
+          updatedGameData.sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+          )
+        );
         setLoading(false);
       }
     );
