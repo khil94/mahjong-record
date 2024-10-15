@@ -74,7 +74,7 @@ export default function RecordPage() {
         const targetUser = liveUserData.find((k) => k.id === v.id);
         return {
           rank: i + 1,
-          score: v.score,
+          score: Number(v.score),
           uma: newUma,
           userName: targetUser.name,
           userId: targetUser.id,
