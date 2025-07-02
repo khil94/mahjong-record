@@ -15,8 +15,8 @@ import { finalUmaCalc, positionCalc } from "@/utils/globalFuncs";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import RecordContainer from "./components/RecordContainer";
-import RecordResultContainer from "./components/RecordResultContainer";
+import RecordContainer from "./_components/RecordContainer";
+import RecordResultContainer from "./_components/RecordResultContainer";
 
 export default function RecordPage() {
   const [gameData, setGameData] = useState<IPostGameData>();
