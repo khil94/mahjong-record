@@ -1,4 +1,4 @@
-import UserWrapper from "./components/UserWrapper";
+import UserWrapper from "./_components/UserWrapper";
 
 interface IProp {
   params: { slug: string };

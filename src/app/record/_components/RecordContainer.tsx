@@ -1,8 +1,8 @@
-import UserRecordData from "@/app/record/components/UserRecordData";
 import Button from "@/components/Button";
 import { IGameRough, IUserPositionData } from "@/types/dataTypes";
 import Image from "next/image";
 import { useState } from "react";
+import UserRecordData from "./UserRecordData";
 
 type IKeys = keyof IUserPositionData;
 
